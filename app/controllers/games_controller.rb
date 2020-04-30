@@ -18,7 +18,6 @@ class GamesController < ApplicationController
     @categories = Category.order(place: :asc)
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
-    @submission = Submission.new
     @participation = @game.user_participation(current_user) || Participation.new
   end
 

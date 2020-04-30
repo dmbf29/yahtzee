@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_action :get_game, only: [:create]
+  before_action :get_game, only: [:create, :update]
 
   def create
     @submission = Submission.new(submission_params)
@@ -12,7 +12,21 @@ class SubmissionsController < ApplicationController
       @categories = Category.order(place: :asc)
       @top_categories = @categories.where(top_half: true)
       @bottom_categories = @categories.where(top_half: false)
-      @submission = Submission.new
+      @participation = @game.user_participation(current_user) || Participation.new
+      render 'games/show'
+    end
+  end
+
+  def update
+    @submission = Submission.find(params[:id])
+    authorize @submission
+    if @submission.update(submission_params)
+      redirect_to game_path(@game)
+    else
+      @users = @game.users
+      @categories = Category.order(place: :asc)
+      @top_categories = @categories.where(top_half: true)
+      @bottom_categories = @categories.where(top_half: false)
       @participation = @game.user_participation(current_user) || Participation.new
       render 'games/show'
     end
