@@ -1,2 +1,11 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<div class="container">
+  <h1><%= @game.name ? @game.name : "Yahtzee" %></h1>
+
+  <p>Participants</p>
+  <ol>
+    <%= @game.users.each do |user| %>
+
+    <% end %>
+  </ol>
+
+</div>

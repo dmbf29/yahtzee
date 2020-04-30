@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :games, through: :participations
   has_many :submissions
   has_many :games_won, source: :games, foreign_key: :winner_id
+  validates :name, presence: true
 end
