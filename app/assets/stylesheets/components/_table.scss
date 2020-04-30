@@ -1,5 +1,13 @@
-table {
+.game-table {
   .form-group {
     margin-bottom: 0 !important;
+  }
+  .form-control {
+    padding: 0;
+    height: 100%;
+  }
+  td {
+    padding: 2px;
+    vertical-align: middle;
   }
 }
