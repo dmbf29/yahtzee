@@ -157,20 +157,20 @@ if Rails.env.development?
       total_cell: false
     },
     {
-      name: 'Total Bot. Half',
-      value: nil,
-      top_half: false,
-      place: 17,
-      fixed_value: false,
-      total_cell: true
-    },
-    {
       name: 'Yahtzee Bonus',
       value: 100,
       top_half: false,
-      place: 18,
+      place: 17,
       fixed_value: true,
       total_cell: false
+    },
+    {
+      name: 'Total Bot. Half',
+      value: nil,
+      top_half: false,
+      place: 18,
+      fixed_value: false,
+      total_cell: true
     },
     {
       name: 'Total Score',

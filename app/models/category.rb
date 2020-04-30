@@ -10,7 +10,7 @@ class Category < ApplicationRecord
     when "Total Bot. Half"
       # user.submissions.joins(:category).where('categories.place < ?', 7).pluck(:value).sum
     when "Total Score"
-      # user.submissions.joins(:category).where('categories.place < ?', 7).pluck(:value).sum
+      user.submissions.where(game: game).pluck(:value).sum
     end
   end
 
