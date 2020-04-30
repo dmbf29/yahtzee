@@ -8,4 +8,8 @@ class ParticipationPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def destroy?
+    true
+  end
 end

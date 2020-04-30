@@ -16,6 +16,8 @@
   </ol>
 
   <div class="row">
-    <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }  %>
+    <% if @participation.id %>
+      <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }  %>
+    <% end %>
   </div>
 </div>

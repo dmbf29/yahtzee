@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :show] do
     resources :participations, only: [:create]
   end
+  resources :participations, only: [:destroy]
 end

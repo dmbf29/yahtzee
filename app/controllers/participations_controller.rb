@@ -13,6 +13,13 @@ class ParticipationsController < ApplicationController
     end
   end
 
+  def destroy
+    @participation = Participation.find(params[:id])
+    authorize @participation
+    @participation.destroy
+    redirect_to game_path(@participation.game)
+  end
+
   private
 
   def participation_params
