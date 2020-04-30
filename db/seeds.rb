@@ -125,7 +125,7 @@ if Rails.env.development?
       total_cell: false
     },
     {
-      name: 'Small Straight (30)',
+      name: 'Sm Straight (30)',
       value: 30,
       top_half: false,
       place: 13,
@@ -133,7 +133,7 @@ if Rails.env.development?
       total_cell: false
     },
     {
-      name: 'Long Straight (40)',
+      name: 'Lg Straight (40)',
       value: 40,
       top_half: false,
       place: 14,
@@ -157,7 +157,7 @@ if Rails.env.development?
       total_cell: false
     },
     {
-      name: 'Total Bottom Half',
+      name: 'Total Bot. Half',
       value: nil,
       top_half: false,
       place: 17,

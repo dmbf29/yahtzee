@@ -19,33 +19,7 @@
 
   <div class="row">
     <div class="col-12 col-sm-6">
-      <table class="table table-bordered table-striped table-hover table-sm text-center">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col"></th>
-            <% @game.users.each do |user| %>
-              <th scope="col"><%= user.name %></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% @top_categories.each do |category| %>
-            <tr>
-              <td class="text-left"><%= category.name %></td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-          <% end %>
-          <tr><td></td><td></td><td></td></tr>
-          <% @bottom_categories.each do |category| %>
-            <tr>
-              <td class="text-left"><%= category.name %></td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'games/table' %>
     </div>
   </div>
 
