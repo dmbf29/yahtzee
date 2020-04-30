@@ -5,6 +5,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     authorize @game
     if @game.save
+      @game.add_creator(current_user)
       redirect_to game_path(@game)
     else
       render 'pages/home'
