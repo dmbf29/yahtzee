@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="my-5 row d-flex justify-content-center">
+    <div class="header text-center">
+      <h1>Yahtzee</h1>
+      <%= simple_form_for @game do |f| %>
+        <%= f.input :name, as: :hidden %>
+        <%= f.submit "Start Game", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
