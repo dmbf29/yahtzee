@@ -1,7 +1,7 @@
 class CreateParticipations < ActiveRecord::Migration[5.2]
   def change
     create_table :participations do |t|
-      t.boolean :creator
+      t.boolean :creator, default: false
       t.integer :place
       t.integer :final_score
       t.references :game, foreign_key: true
