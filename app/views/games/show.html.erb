@@ -1,12 +1,3 @@
-<style>
-  th {
-    max-width: 80px;
-  }
-  td {
-    max-width: 80px;
-  }
-</style>
-
 <div class="container">
   <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
   <p><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>

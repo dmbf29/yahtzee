@@ -9,5 +9,22 @@
   td {
     padding: 2px;
     vertical-align: middle;
+    max-width: 70px;
+    min-width: 70px;
+  }
+  th {
+    max-width: 70px;
+    min-width: 70px;
+    font-weight: lighter;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  td:first-child {
+    max-width: 110px;
+    min-width: 110px;
+  }
+  th:first-child {
+    max-width: 110px;
+    min-width: 110px;
   }
 }
