@@ -2,7 +2,7 @@
   <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
 
   <% unless @game.users.include?(current_user) %>
-    <%= form_for [@game, @participation] do |f| %>
+    <%= form_for [@game, @participation], remote: true do |f| %>
       <%= f.submit 'Join', class: 'btn btn-primary' %>
     <% end %>
   <% end %>

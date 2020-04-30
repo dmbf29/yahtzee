@@ -44,6 +44,7 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'pundit'
 gem 'simple_form'
+gem 'turbolinks_render'
 
 
 group :development, :test do  gem 'pry-byebug'
