@@ -14,6 +14,7 @@ class GamesController < ApplicationController
 
   def show
     authorize @game
+    @participation = Participation.new
   end
 
   private

@@ -1,9 +1,14 @@
 <div class="container">
-  <h1><%= @game.name ? @game.name : "Yahtzee" %></h1>
+  <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
+
+  <%= form_for [@game, @participation] do |f| %>
+    <%= f.submit 'Join', class: 'btn btn-primary' %>
+  <% end %>
+
 
   <p>Participants</p>
   <ol>
-    <%= @game.users.each do |user| %>
+    <% @game.users.each do |user| %>
       <li><%= user.name %></li>
     <% end %>
   </ol>
