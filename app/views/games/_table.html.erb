@@ -2,25 +2,39 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col"></th>
-      <% @game.users.each do |user| %>
+      <% @users.each do |user| %>
         <th scope="col"><%= user.name %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @top_categories.each do |category| %>
+    <% @top_categories.each_with_index do |category, index| %>
       <tr>
-        <td class="text-left"><%= category.name %></td>
-        <td></td>
-        <td></td>
+        <td class="text-left"><small><%= category.name %></small></td>
+        <% @users.each do |user| %>
+          <td>
+            <%= simple_form_for [@game, @submission], remote: true do |f| %>
+              <%= f.input :value, label: false %>
+              <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
+              <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
     <tr><td></td><td></td><td></td></tr>
     <% @bottom_categories.each do |category| %>
       <tr>
-        <td class="text-left"><%= category.name %></td>
-        <td></td>
-        <td></td>
+        <td class="text-left"><small><%= category.name %></small></td>
+        <% @users.each do |user| %>
+          <td>
+            <%= simple_form_for [@game, @submission], remote: true do |f| %>
+              <%= f.input :value, label: false %>
+              <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
+              <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
