@@ -8,6 +8,12 @@ class SubmissionsController < ApplicationController
     if @submission.save
       redirect_to game_path(@game)
     else
+      @users = @game.users
+      @categories = Category.order(place: :asc)
+      @top_categories = @categories.where(top_half: true)
+      @bottom_categories = @categories.where(top_half: false)
+      @submission = Submission.new
+      @participation = @game.user_participation(current_user) || Participation.new
       render 'games/show'
     end
   end

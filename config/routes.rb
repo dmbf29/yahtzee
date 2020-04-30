@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :games, only: [:create, :show] do
     resources :participations, only: [:create]
-    resources :submissions, only: [:create]
+    resources :submissions, only: [:create, :update]
   end
   resources :participations, only: [:destroy]
 end
