@@ -14,10 +14,10 @@
         <% @users.each do |user| %>
           <td>
             <% if category.total_cell %>
-              <%= category.get_total(@game, user) %>
+              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, user) %>" readonly>
             <% else %>
               <%= simple_form_for [@game, get_submission(category, user)], remote: true do |f| %>
-                <%= f.input :value, label: false, input_html: { style: 'text-align: center;background-color: transparent;border: none' } %>
+                <%= f.input :value, label: false, input_html: { class: 'table-form-control' } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
                 <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
               <% end %>
@@ -33,10 +33,10 @@
         <% @users.each do |user| %>
           <td>
             <% if category.total_cell %>
-              <%= category.get_total(@game, user) %>
+              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, user) %>" readonly>
             <% else %>
               <%= simple_form_for [@game, get_submission(category, user)], remote: true do |f| %>
-                <%= f.input :value, label: false, input_html: { style: 'text-align: center;background-color: transparent;border: none' } %>
+                <%= f.input :value, label: false, input_html: { class: 'table-form-control' } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
                 <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
               <% end %>
