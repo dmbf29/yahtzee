@@ -10,10 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_042550) do
+ActiveRecord::Schema.define(version: 2020_04_30_043044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.boolean "top_half"
+    t.integer "place"
+    t.boolean "fixed_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.bigint "winner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["winner_id"], name: "index_games_on_winner_id"
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.boolean "creator", default: false
+    t.integer "place"
+    t.integer "final_score"
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_participations_on_game_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "game_id"
+    t.bigint "category_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_submissions_on_category_id"
+    t.index ["game_id"], name: "index_submissions_on_game_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +70,10 @@ ActiveRecord::Schema.define(version: 2020_04_30_042550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "games", "users", column: "winner_id"
+  add_foreign_key "participations", "games"
+  add_foreign_key "participations", "users"
+  add_foreign_key "submissions", "categories"
+  add_foreign_key "submissions", "games"
+  add_foreign_key "submissions", "users"
 end
