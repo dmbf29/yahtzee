@@ -4,7 +4,7 @@
   <p>Participants</p>
   <ol>
     <%= @game.users.each do |user| %>
-
+      <li><%= user.name %></li>
     <% end %>
   </ol>
 
