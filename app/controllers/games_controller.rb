@@ -14,7 +14,7 @@ class GamesController < ApplicationController
 
   def show
     authorize @game
-    @participation = Participation.new
+    @participation = @game.user_participation(current_user) || Participation.new
   end
 
   private

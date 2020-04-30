@@ -1,8 +1,9 @@
 <div class="container">
   <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
 
-  <% unless @game.users.include?(current_user) %>
-    <%= form_for [@game, @participation], remote: true do |f| %>
+  <% unless @participation.id %>
+    <%= simple_form_for [@game, @participation], remote: true do |f| %>
+      <%= f.input :creator, as: :hidden, input_html: { value: false } %>
       <%= f.submit 'Join', class: 'btn btn-primary' %>
     <% end %>
   <% end %>
@@ -14,4 +15,7 @@
     <% end %>
   </ol>
 
+  <div class="row">
+    <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }  %>
+  </div>
 </div>

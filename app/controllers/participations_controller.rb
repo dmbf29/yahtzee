@@ -20,6 +20,6 @@ class ParticipationsController < ApplicationController
   end
 
   def get_game
-    @game = game.find(params[:id])
+    @game = Game.find(params[:game_id])
   end
 end

@@ -5,12 +5,16 @@ class Game < ApplicationRecord
   belongs_to :winner, class_name: "User", optional: true
 
   def add_creator(user)
-    participation = participations.find_by(user: user)
+    participation = user_participation(user)
     if participation
       participation.creator = true
       participation.save
     else
       Participation.create(game: self, user: user, creator: true)
     end
+  end
+
+  def user_participation(user)
+    participations.find_by(user: user)
   end
 end
