@@ -1,12 +1,53 @@
+<style>
+  th {
+    max-width: 80px;
+  }
+  td {
+    max-width: 80px;
+  }
+</style>
+
 <div class="container">
   <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
-
+  <p><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>
   <% unless @participation.id %>
     <%= simple_form_for [@game, @participation], remote: true do |f| %>
       <%= f.input :creator, as: :hidden, input_html: { value: false } %>
       <%= f.submit 'Join', class: 'btn btn-primary' %>
     <% end %>
   <% end %>
+
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <table class="table table-bordered table-striped table-hover table-sm text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <% @game.users.each do |user| %>
+              <th scope="col"><%= user.name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_categories.each do |category| %>
+            <tr>
+              <td class="text-left"><%= category.name %></td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          <% end %>
+          <tr><td></td><td></td><td></td></tr>
+          <% @bottom_categories.each do |category| %>
+            <tr>
+              <td class="text-left"><%= category.name %></td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <p>Participants</p>
   <ol>
