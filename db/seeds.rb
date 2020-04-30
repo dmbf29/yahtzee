@@ -1,9 +1,4 @@
-# name
-# value
-# top_half
-# place
-# fixed_value
-categories = [
+category_attributes = [
   {
     name: 'Aces',
     value: nil,
@@ -75,5 +70,86 @@ categories = [
     place: 9,
     fixed_value: false,
     total_cell: true
+  },
+  {
+    name: '3 of Kind',
+    value: nil,
+    top_half: false,
+    place: 10,
+    fixed_value: false,
+    total_cell: false
+  },
+  {
+    name: '4 of Kind',
+    value: nil,
+    top_half: false,
+    place: 11,
+    fixed_value: false,
+    total_cell: false
+  },
+  {
+    name: 'Full House (25)',
+    value: 25,
+    top_half: false,
+    place: 12,
+    fixed_value: true,
+    total_cell: false
+  },
+  {
+    name: 'Small Straight (30)',
+    value: 30,
+    top_half: false,
+    place: 13,
+    fixed_value: true,
+    total_cell: false
+  },
+  {
+    name: 'Long Straight (40)',
+    value: 40,
+    top_half: false,
+    place: 14,
+    fixed_value: true,
+    total_cell: false
+  },
+  {
+    name: 'Yahtzee (50)',
+    value: 50,
+    top_half: false,
+    place: 15,
+    fixed_value: true,
+    total_cell: false
+  },
+  {
+    name: 'Chance (total)',
+    value: nil,
+    top_half: false,
+    place: 16,
+    fixed_value: false,
+    total_cell: false
+  },
+  {
+    name: 'Total Bottom Half',
+    value: nil,
+    top_half: false,
+    place: 17,
+    fixed_value: false,
+    total_cell: true
+  },
+  {
+    name: 'Yahtzee Bonus',
+    value: 100,
+    top_half: false,
+    place: 18,
+    fixed_value: true,
+    total_cell: false
+  },
+  {
+    name: 'Total Score',
+    value: nil,
+    top_half: false,
+    place: 19,
+    fixed_value: false,
+    total_cell: true
   }
 ]
+Categorey.create!(category_attributes)
