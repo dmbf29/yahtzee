@@ -12,4 +12,8 @@ class GamePolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def order?
+    true
+  end
 end

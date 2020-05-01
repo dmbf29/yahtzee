@@ -1,9 +1,9 @@
 <table id="game-table" class="table table-bordered table-striped table-hover table-sm text-center game-table">
   <thead class="thead-dark">
-    <tr>
+    <tr id='table-headers' data-game-id='<%= @game.id %>'>
       <th scope="col"></th>
-      <% @users.each do |user| %>
-        <th scope="col"><small><%= user.name %></small></th>
+      <% @participations.each do |participation| %>
+        <th scope="col" data-participation-id="<%= participation.id %>"><small><%= participation.user.name %></small></th>
       <% end %>
     </tr>
   </thead>
@@ -11,34 +11,35 @@
     <% @top_categories.each_with_index do |category, index| %>
       <tr>
         <td class="text-left"><small><%= category.name %></small></td>
-        <% @users.each do |user| %>
+        <% @participations.each do |participation| %>
           <td>
             <% if category.total_cell %>
-              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, user) %>" readonly>
+              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, participation.user) %>" readonly>
             <% else %>
-              <%= simple_form_for [@game, get_submission(category, user)], remote: true do |f| %>
+              <%= simple_form_for [@game, get_submission(category, participation.user)], remote: true do |f| %>
                 <%= f.input :value, label: false, input_html: { class: 'table-form-control' } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
-                <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
+                <%= f.input :user_id, as: :hidden, input_html: { value: participation.user.id } %>
               <% end %>
             <% end %>
           </td>
         <% end %>
       </tr>
     <% end %>
-    <tr><td></td><td></td><td></td></tr>
+    <tr></tr>
+    <tr></tr>
     <% @bottom_categories.each do |category| %>
       <tr>
         <td class="text-left"><small><%= category.name %></small></td>
-        <% @users.each do |user| %>
+        <% @participations.each do |participation| %>
           <td>
             <% if category.total_cell %>
-              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, user) %>" readonly>
+              <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, participation.user) %>" readonly>
             <% else %>
-              <%= simple_form_for [@game, get_submission(category, user)], remote: true do |f| %>
+              <%= simple_form_for [@game, get_submission(category, participation.user)], remote: true do |f| %>
                 <%= f.input :value, label: false, input_html: { class: 'table-form-control' } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id } %>
-                <%= f.input :user_id, as: :hidden, input_html: { value: user.id } %>
+                <%= f.input :user_id, as: :hidden, input_html: { value: participation.user.id } %>
               <% end %>
             <% end %>
           </td>

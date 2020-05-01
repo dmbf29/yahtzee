@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :search]
   skip_after_action :verify_authorized, only: [:search]
+  before_action :set_table_values, only: [:show]
+
   def create
     @game = Game.new(game_params)
     authorize @game
@@ -14,7 +16,7 @@ class GamesController < ApplicationController
 
   def show
     authorize @game
-    @users = @game.users
+    @participations = @game.participations.order(place: :asc)
     @categories = Category.order(place: :asc)
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
@@ -42,5 +44,13 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find_by(code: params[:id])
+  end
+
+  def set_table_values
+    @participations = @game.participations.order(place: :asc)
+    @categories = Category.order(place: :asc)
+    @top_categories = @categories.where(top_half: true)
+    @bottom_categories = @categories.where(top_half: false)
+    @participation = @game.user_participation(current_user) || Participation.new
   end
 end

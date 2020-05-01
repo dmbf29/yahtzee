@@ -15,7 +15,7 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 require("channels")
-console.log('Hello World from Webpacker')
+import { initSortable } from '../plugins/init_sortable';
 
 
 // ----------------------------------------------------
@@ -32,6 +32,7 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initSortable();
 });
 
 import "controllers"

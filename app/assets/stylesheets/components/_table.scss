@@ -33,3 +33,16 @@
     border: none
   }
 }
+
+#table-headers th {
+  cursor: grab;
+}
+
+#table-headers th:active {
+  cursor: grabbing;
+}
+
+#table-headers th.ghost {
+  filter: grayscale(1);
+  opacity: 0.5;
+}

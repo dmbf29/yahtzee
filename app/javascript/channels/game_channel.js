@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+import { initSortable } from '../plugins/init_sortable';
 
 const gameContainer = document.getElementById('game');
 console.log("Game Container:")
@@ -13,6 +14,7 @@ if (gameContainer) {
     received(data) {
       const gameTable = document.getElementById('game-table');
       gameTable.innerHTML = data; // called when data is broadcast in the cable
+      initSortable();
     },
   });
 }
