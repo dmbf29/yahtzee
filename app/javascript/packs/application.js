@@ -33,6 +33,12 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initSortable();
+  const btn = document.querySelector('#dice-btn')
+  if (btn) {
+    btn.addEventListener('click', (event) => {
+      document.querySelector('iframe').style.height = '350px'
+    })
+  }
 });
 
 import "controllers"
