@@ -1,7 +1,7 @@
 class GamePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      user.games
     end
   end
 

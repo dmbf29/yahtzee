@@ -31,7 +31,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = policy_scope(Game)
+    @games = policy_scope(Game).order(created_at: :desc)
   end
 
   private
