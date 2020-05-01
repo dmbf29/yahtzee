@@ -3,7 +3,7 @@ class Submission < ApplicationRecord
   belongs_to :category
   belongs_to :user
   validates :value, numericality: true
-  validates_uniqueness_of :category_id, scope: :user_id
+  validates_uniqueness_of :category_id, scope: [:user_id, :game_id]
   after_save :check_top_bonus, if: :top_six?
 
   def top_six?

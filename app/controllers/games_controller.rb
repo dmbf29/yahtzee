@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :search]
+  before_action :set_game, only: [:show, :search, :finish]
   skip_after_action :verify_authorized, only: [:search]
   before_action :set_table_values, only: [:show]
 
@@ -34,6 +34,11 @@ class GamesController < ApplicationController
 
   def index
     @games = policy_scope(Game).order(created_at: :desc)
+  end
+
+  def finish
+    @game.finish
+    redirect_to game_path(@game)
   end
 
   private

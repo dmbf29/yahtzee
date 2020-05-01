@@ -13,6 +13,7 @@ class SubmissionsController < ApplicationController
       )
       redirect_to game_path(@game)
     else
+      flash[:alert] = @submission.errors.full_messages.first
       render 'games/show'
     end
   end
