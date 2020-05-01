@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :submissions, only: [:create, :update]
   end
   resources :participations, only: [:destroy]
+  get '/search', to: 'games#search', as: :search
 end

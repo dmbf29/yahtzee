@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show]
-
+  before_action :set_game, only: [:show, :search]
+  skip_after_action :verify_authorized, only: [:search]
   def create
     @game = Game.new(game_params)
     authorize @game
@@ -19,6 +19,15 @@ class GamesController < ApplicationController
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
+  end
+
+  def search
+    if @game
+      redirect_to game_path(@game)
+    else
+      flash[:alert] = "Could not find game with that code."
+      redirect_to root_path
+    end
   end
 
   private
