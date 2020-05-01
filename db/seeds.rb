@@ -1,31 +1,33 @@
+user = User.find_by_email('douglasmberkley@gmail.com')
+unless user
+  puts "Creating admin..."
+  user = User.create(
+    name: 'Doug',
+    admin: true,
+    email: 'douglasmberkley@gmail.com',
+    password: ENV['DOUG_PASSWORD']
+  )
+  puts "#{user.name} created..."
+end
+
+user = User.find_by_email('dmbf29@gmail.com')
+unless user
+  puts "Creating test user..."
+  user = User.create(
+    name: 'dmf29',
+    admin: true,
+    email: 'dmbf29@gmail.com',
+    password: ENV['DOUG_PASSWORD']
+  )
+  puts "#{user.name} created..."
+end
+
 if Rails.env.development?
-  user = User.find_by_email('douglasmberkley@gmail.com')
-  unless user
-    puts "Creating admin..."
-    user = User.create(
-      name: 'Doug',
-      admin: true,
-      email: 'douglasmberkley@gmail.com',
-      password: ENV['DOUG_PASSWORD']
-    )
-    puts "#{user.name} created..."
-  end
-
-  user = User.find_by_email('dmbf29@gmail.com')
-  unless user
-    puts "Creating test user..."
-    user = User.create(
-      name: 'dmf29',
-      admin: true,
-      email: 'dmbf29@gmail.com',
-      password: ENV['DOUG_PASSWORD']
-    )
-    puts "#{user.name} created..."
-  end
-
   puts "Destroying categories..."
   Category.destroy_all
+end
 
+if Category.count == 0
   puts "Creating categories..."
   category_attributes = [
     {
