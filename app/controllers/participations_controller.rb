@@ -9,6 +9,11 @@ class ParticipationsController < ApplicationController
     @participation.game = @game
     authorize @participation
     if @participation.save
+      set_table_values
+      GameChannel.broadcast_to(
+        @game,
+        render_to_string(partial: "games/table")
+      )
       redirect_to game_path(@game)
     else
       render 'games/show'
@@ -47,7 +52,7 @@ class ParticipationsController < ApplicationController
   end
 
   def set_game
-    @game = Game.find_by(code: params[:id])
+    @game = Game.find_by(code: params[:game_id])
   end
 
   def set_table_values
