@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="game" data-game-id="<%= @game.id %>">
   <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
   <p><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>
   <% unless @participation.id %>
