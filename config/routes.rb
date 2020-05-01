@@ -13,5 +13,6 @@ Rails.application.routes.draw do
       patch :order
     end
   end
+  resources :users, only: [:update]
   get '/search', to: 'games#search', as: :search
 end

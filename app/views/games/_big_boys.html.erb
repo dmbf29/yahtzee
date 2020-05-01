@@ -2,7 +2,14 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Big Boys</th>
-      <th></th>
+      <th>
+        <%= simple_form_for current_user, html: { style: 'display: flex;' } do |f| %>
+          <%= f.input :big_boys, as: :hidden, input_html: { value: current_user.big_boys + 1 } %>
+          <%= button_tag type: 'submit', data: { confirm: "+1 to your big boys?" }, style: 'border: none;background-color: transparent;color: white;display: flex;align-items:center;' do %>
+            <i class="far fa-plus-square"></i>
+          <% end %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>
