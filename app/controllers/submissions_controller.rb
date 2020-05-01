@@ -1,15 +1,11 @@
 class SubmissionsController < ApplicationController
   before_action :set_game, only: [:create, :update]
+  before_action :set_table_values, only: [:create, :update]
 
   def create
     @submission = Submission.new(submission_params)
     @submission.game = @game
     authorize @submission
-    @users = @game.users
-    @categories = Category.order(place: :asc)
-    @top_categories = @categories.where(top_half: true)
-    @bottom_categories = @categories.where(top_half: false)
-    @participation = @game.user_participation(current_user) || Participation.new
     if @submission.save
       GameChannel.broadcast_to(
         @game,
@@ -27,11 +23,6 @@ class SubmissionsController < ApplicationController
     if @submission.update(submission_params)
       redirect_to game_path(@game)
     else
-      @users = @game.users
-      @categories = Category.order(place: :asc)
-      @top_categories = @categories.where(top_half: true)
-      @bottom_categories = @categories.where(top_half: false)
-      @participation = @game.user_participation(current_user) || Participation.new
       render 'games/show'
     end
   end
@@ -43,6 +34,14 @@ class SubmissionsController < ApplicationController
   end
 
   def set_game
-    @game = Game.find_by(code: params[:id])
+    @game = Game.find_by(code: params[:game_id])
+  end
+
+  def set_table_values
+    @participations = @game.participations.order(place: :asc)
+    @categories = Category.order(place: :asc)
+    @top_categories = @categories.where(top_half: true)
+    @bottom_categories = @categories.where(top_half: false)
+    @participation = @game.user_participation(current_user) || Participation.new
   end
 end

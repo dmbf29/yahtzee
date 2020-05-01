@@ -1,6 +1,6 @@
 <div class="container" id="game" data-game-id="<%= @game.id %>">
-  <h1><%= @game.name.empty? ? "Yahtzee" : @game.name %></h1>
-  <p><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>
+  <!-- <h1><%#= @game.name.empty? ? "Yahtzee" : @game.name %></h1> -->
+  <p class="my-2"><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>
   <% unless @participation.id %>
     <%= simple_form_for [@game, @participation], remote: true do |f| %>
       <%= f.input :creator, as: :hidden, input_html: { value: false } %>
