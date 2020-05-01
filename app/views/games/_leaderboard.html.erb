@@ -10,7 +10,7 @@
       <% @leaderboard.each do |leader| %>
         <tr>
           <td><%= leader.user.name %></td>
-          <td><%= leader.final_score %></td>
+          <td style="text-align: center;"><%= leader.final_score %></td>
         </tr>
       <% end %>
     <% else %>

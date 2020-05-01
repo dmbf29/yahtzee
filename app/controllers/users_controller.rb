@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def update
     @game = Game.find(params[:game_id])
+    authorize @user
     if @user.update(user_params)
+
       redirect_to game_path(@game)
     else
       flash[:alert] = @user.errors.full_messages.first
