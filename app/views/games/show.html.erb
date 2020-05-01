@@ -11,7 +11,11 @@
   <div class="row">
     <div class="col-12 col-sm-6">
       <%= render 'games/table' %>
-      <button type="button" class="btn btn-light border border-dark">Finish Game</button>
+      <div class="d-flex justify-content-center">
+        <%= simple_form_for @game, method: :patch, url: finish_game_path(@game) do |f| %>
+          <%= f.submit "Submit Scores", class: "btn btn-light border border-dark" %>
+        <% end %>
+      </div>
     </div>
   </div>
 

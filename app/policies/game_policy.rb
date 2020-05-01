@@ -16,4 +16,8 @@ class GamePolicy < ApplicationPolicy
   def order?
     true
   end
+
+  def finish?
+    record.users.include?(user)
+  end
 end

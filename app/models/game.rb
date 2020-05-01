@@ -34,7 +34,7 @@ class Game < ApplicationRecord
       participation.final_score = score
       participation.save
     end
-    self.winner = participations.order(final_score: :desc).first
+    self.winner = participations.order(final_score: :desc).first.user
     save
   end
 end

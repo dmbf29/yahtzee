@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :games, only: [:index,:create, :show] do
     resources :participations, only: [:create]
     resources :submissions, only: [:create, :update]
+    member do
+      patch :finish
+    end
   end
   resources :participations, only: [:destroy, :update] do
     collection do
