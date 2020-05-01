@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :get_game, only: [:show]
+  before_action :set_game, only: [:show]
 
   def create
     @game = Game.new(game_params)
@@ -27,7 +27,7 @@ class GamesController < ApplicationController
     params.require(:game).permit(:code, :name)
   end
 
-  def get_game
-    @game = Game.find(params[:id])
+  def set_game
+    @game = Game.find_by(code: params[:id])
   end
 end

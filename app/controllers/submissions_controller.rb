@@ -43,6 +43,6 @@ class SubmissionsController < ApplicationController
   end
 
   def set_game
-    @game = Game.find(params[:game_id])
+    @game = Game.find_by(code: params[:id])
   end
 end

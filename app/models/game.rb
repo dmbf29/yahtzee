@@ -3,6 +3,16 @@ class Game < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :users, through: :participations
   belongs_to :winner, class_name: "User", optional: true
+  before_validation :add_hex_code
+  validates_uniqueness_of :code
+
+  def to_param
+    code
+  end
+
+  def add_hex_code
+    self.code = SecureRandom.alphanumeric(6).upcase if code.nil?
+  end
 
   def add_creator(user)
     participation = user_participation(user)

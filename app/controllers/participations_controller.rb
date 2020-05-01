@@ -1,5 +1,5 @@
 class ParticipationsController < ApplicationController
-  before_action :get_game, only: [:create]
+  before_action :set_game, only: [:create]
 
   def create
     @participation = Participation.new(participation_params)
@@ -26,7 +26,7 @@ class ParticipationsController < ApplicationController
     params.require(:participation).permit(:place, :final_score, :creator)
   end
 
-  def get_game
-    @game = Game.find(params[:game_id])
+  def set_game
+    @game = Game.find_by(code: params[:id])
   end
 end
