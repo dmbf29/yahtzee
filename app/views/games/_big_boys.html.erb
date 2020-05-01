@@ -1,21 +1,21 @@
 <table id="leaderboard" class="table table-hover table-sm">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Leaderboard</th>
+      <th scope="col">Big Boys</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% if @leaderboard.any? %>
-      <% @leaderboard.each do |leader| %>
+    <% if @big_boys.any? %>
+      <% @big_boys.each do |user| %>
         <tr>
           <td><%= leader.user.name %></td>
-          <td><%= leader.final_score %></td>
+          <td><%= leader.big_boys %></td>
         </tr>
       <% end %>
     <% else %>
       <tr>
-        <td>No scores yet.</td>
+        <td>No big boys yet.</td>
         <td></td>
       </tr>
     <% end %>
