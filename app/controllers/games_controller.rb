@@ -30,6 +30,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def index
+    @games = policy_scope(Game)
+  end
+
   private
 
   def game_params

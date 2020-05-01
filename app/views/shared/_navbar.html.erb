@@ -22,7 +22,7 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Games", "#", class: "nav-link navbar-lewagon-link" %>
+          <%= link_to "Games", games_path, class: "nav-link navbar-lewagon-link" %>
         </li>
         <li class="nav-item mr-3">
           <%#= link_to "New Game", "#", class: "btn btn-info" %>
@@ -30,8 +30,8 @@
         <li class="nav-item dropdown">
           <%= image_tag "dice.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "New Game", "#", class: "dropdown-item" %>
-            <%= link_to "Games", "#", class: "dropdown-item" %>
+            <%= link_to "New Game", root_path, class: "dropdown-item" %>
+            <%= link_to "Games", games_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
