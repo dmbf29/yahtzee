@@ -3,7 +3,12 @@
     <tr>
       <th scope="col">Leaderboard</th>
       <th>
-
+        <%= simple_form_for(current_user) do |f| %>
+          <%= f.input :big_boys, input_html: { value: current_user.big_boys + 1 } %>
+          <%= button_tag type: 'submit', data: { confirm: "Add one to your big boys?" } do %>
+            <i class="far fa-plus-square"></i>
+          <% end %>
+        <% end %>
       </th>
     </tr>
   </thead>
@@ -23,3 +28,4 @@
     <% end %>
   </tbody>
 </table>
+
