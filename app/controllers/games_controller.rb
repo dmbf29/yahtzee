@@ -21,6 +21,7 @@ class GamesController < ApplicationController
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
+    @leaderboard = Participation.where.not(final_score: nil).order(final_score: :desc).first(5)
   end
 
   def search

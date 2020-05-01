@@ -1,11 +1,12 @@
 .footer {
-  background: $blackish;
+  background: $charcoal;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0px 50px;
   color: rgba(200,200,200, 0.7);
+  flex-shrink: 0;
 }
 .footer-links {
   display: flex;

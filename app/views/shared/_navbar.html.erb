@@ -31,7 +31,7 @@
           <%= image_tag "dice.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "New Game", root_path, class: "dropdown-item" %>
-            <%= link_to "Games", games_path, class: "dropdown-item" %>
+            <%= link_to "All Games", games_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
