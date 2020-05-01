@@ -5,6 +5,7 @@
       <th>
         <%= simple_form_for current_user, html: { style: 'display: flex;' } do |f| %>
           <%= f.input :big_boys, as: :hidden, input_html: { value: current_user.big_boys + 1 } %>
+          <%= hidden_field_tag :game_id, @game.id %>
           <%= button_tag type: 'submit', data: { confirm: "+1 to your big boys?" }, style: 'border: none;background-color: transparent;color: white;display: flex;align-items:center;' do %>
             <i class="far fa-plus-square"></i>
           <% end %>
