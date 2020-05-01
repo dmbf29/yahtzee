@@ -3,10 +3,9 @@
   <% @games.each do |game| %>
     <div class="notification">
       <!-- <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> -->
-
       <div class="notification-content">
         <p><small><%= game.created_at.strftime('%A, %b %d') %></small></p>
-        <p><strong><%#= game.name.empty? ? "Yahtzee" : game.name %></strong> <%= game.users.pluck(:name).join(', ') %>.</p>
+        <p><strong><%#= game.name.empty? ? "Yahtzee" : game.name %></strong> <%= game.users.pluck(:name).join(', ') %></p>
       </div>
 
       <div class="notification-actions">
