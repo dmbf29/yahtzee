@@ -4,7 +4,7 @@ class ParticipationsController < ApplicationController
   # before_action :set_table_values, only: [:order]
 
   def create
-    @participation = Participation.new(participation_params)
+    @participation = Participation.new
     @participation.user = current_user
     @participation.game = @game
     authorize @participation

@@ -1,21 +1,30 @@
+<!-- <input type="text" value="<%= @game.code %>" readonly class='form-control w-100'> -->
 <div class="container" id="game" data-game-id="<%= @game.id %>">
   <!-- <h1><%#= @game.name.empty? ? "Yahtzee" : @game.name %></h1> -->
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center">
-        <div style="flex:50%;flex-grow:0;padding-right: 15px;">
-          <% unless @participation.id %>
-            <%= simple_form_for [@game, @participation], remote: true do |f| %>
-              <%= f.input :creator, as: :hidden, input_html: { value: false } %>
-              <%= f.submit 'Join', class: 'btn btn-primary' %>
-            <% end %>
+        <div style="display:flex;align-items:center;flex:50%;flex-grow:0;padding-right: 15px;">
+          <% if @participation.id %>
+            <div class="d-flex w-100">
+              <button style='font-size: 13px;' class="btn btn-secondary my-2 d-flex align-items-center" id="share-btn" data-container="body" data-toggle="popover" data-placement="top" data-content="Copied to clipboard.">
+                Share&nbsp;<i class="fas fa-share-alt"></i>
+              </button>
+              <p class="my-2 w-100">
+                <input id="share-link" type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'>
+              </p>
+            </div>
+          <% else %>
+            <div class="my-2">
+              <%= link_to game_participations_path(@game, @participation), method: :post, remote: true, class: 'btn btn-primary', style: "font-size: 13px;" do %>
+                <i class="fas fa-play-circle"></i> Join
+              <% end %>
+            </div>
           <% end %>
-          <div class="d-flex">
-            <button class="btn btn-secondary my-2 d-flex align-items-center" id="share-btn" data-container="body" data-toggle="popover" data-placement="top" data-content="Copied to clipboard.">Share&nbsp;<i class="fas fa-share-alt"></i></button>
-            <p class="my-2 w-100"><input id="share-link" type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'></p>
-          </div>
         </div>
-        <p id="dice-btn" class="btn btn-primary m-0">Dice <i class="fas fa-chevron-down"></i></p>
+        <p id="dice-btn" class="btn btn-primary m-0" style='font-size: 13px;'>
+          Dice <i class="fas fa-chevron-down"></i>
+        </p>
       </div>
     </div>
   </div>
@@ -24,7 +33,7 @@
     <iframe src="https://www.elversonpuzzle.com/yahtzee-dice-roller.html#element164" frameborder="0" width="100%" class="mb-3 d-none" height="350px"></iframe>
     <div class="col-12 col-sm-6">
       <%= render 'games/table' %>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center mb-5">
         <%= simple_form_for @game, method: :patch, url: finish_game_path(@game) do |f| %>
           <%= f.submit "Submit Scores", class: "btn btn-light border border-dark" %>
         <% end %>
