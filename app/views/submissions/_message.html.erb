@@ -1,0 +1,12 @@
+<div class="message-container submission" id="submission-<%= submission.id %>">
+  <i class="author">
+    <span><%= submission.user.name %></span>
+    <small>
+      <%= submission.updated_at.strftime('%l:%M %p') %>
+      <% unless submission.submitter == submission.user %>
+        (by: <%= submission.submitter.name %>)
+      <% end %>
+    </small>
+  </i>
+  <p><%= submission.category.name %> - <%= submission.value %></p>
+</div>

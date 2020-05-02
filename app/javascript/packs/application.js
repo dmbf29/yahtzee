@@ -51,7 +51,11 @@ document.addEventListener('turbolinks:load', () => {
   if (shareBtn) {
     shareBtn.addEventListener("click", copy);
   }
-
+  const submissions = document.querySelectorAll('.submission');
+  const lastMessage = submissions[submissions.length - 1];
+  if (lastMessage !== undefined) {
+    lastMessage.scrollIntoView();
+  }
 });
 
 import "controllers"

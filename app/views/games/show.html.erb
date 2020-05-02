@@ -40,9 +40,10 @@
       </div>
     </div>
     <div class="col-12 col-sm-6">
+      <%= render 'submissions/list' %>
+      <%= render 'participations/list' %>
       <%= render 'games/leaderboard' %>
       <%= render 'games/big_boys' %>
-      <%= render 'participations/list' %>
       <div class="text-right">
         <% if @participation.id %>
           <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'mb-3 subtle-gray'  %>

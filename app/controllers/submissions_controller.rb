@@ -5,11 +5,13 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     @submission.game = @game
+    @submission.submitter = current_user
     authorize @submission
     if @submission.save
       GameChannel.broadcast_to(
         @game,
-        render_to_string(partial: "games/table")
+        table: render_to_string(partial: "games/table"),
+        message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
       )
       redirect_to game_path(@game)
     else
@@ -22,6 +24,11 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     authorize @submission
     if @submission.update(submission_params)
+      GameChannel.broadcast_to(
+        @game,
+        table: render_to_string(partial: "games/table"),
+        message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
+      )
       redirect_to game_path(@game)
     else
       render 'games/show'
