@@ -12,7 +12,7 @@
       <% @participations.each do |participation| %>
         <tr>
           <td><%= participation.user.name %></td>
-          <td class="text-center"><%= participation.user.participations.count %></td>
+          <td class="text-center"><%= participation.user.participations.where.not(final_score: nil).count %></td>
           <td class="text-center"><%= participation.user.average_score %></td>
           <td><%= link_to participation_path(participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'subtle-gray' do %><small><i class="fas fa-times"></i></small><% end %></td>
         </tr>

@@ -3,9 +3,24 @@
     <%= image_tag 'logo.jpg' %>
   <% end %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+ -->
+  <% if user_signed_in? %>
+    <div class="nav-item dropdown navbar-toggler" style="border: none;">
+      <%= image_tag "dice.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <%= link_to "New Game", root_path, class: "dropdown-item" %>
+        <%= link_to "All Games", games_path, class: "dropdown-item" %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="navbar-toggler" style="border: none;">
+      <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-warning", style: 'color: white;' %>
+    </div>
+  <% end %>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,7 +52,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-warning ml-3", style: 'color: white;' %>
         </li>
       <% end %>
     </ul>
