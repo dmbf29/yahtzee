@@ -1,0 +1,26 @@
+.rolls-container {
+  background: white;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid $gray-200;
+  h1 {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid $gray-200;
+    margin-bottom: 0;
+    background-color: $charcoal;
+  }
+  h5 {
+    background-color: $charcoal;
+    color: white;
+    margin-bottom: 0;
+  }
+}
+
+#rolls {
+  padding: 0 1rem;
+  padding-top: 1rem;
+  overflow: scroll;
+  max-height: 260px;
+}
