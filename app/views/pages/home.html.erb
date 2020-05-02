@@ -1,16 +1,13 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'banner.png' %>);">
-</div>
-
-<div class="container">
-  <div class="my-3 row d-flex justify-content-center">
-
-    <div class="header text-center">
-      <h1>Play Yahtzee Online</h1>
-      <%= simple_form_for @game do |f| %>
-        <%= f.input :name, as: :hidden %>
-        <%= f.submit "Start a Game", class: 'btn btn-primary' %>
-      <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'dice_banner.jpg' %>);">
+  <div class="container">
+    <div class="my-3 row d-flex justify-content-center">
+      <div class="header text-center">
+        <h1>Play Yahtzee Online</h1>
+        <%= simple_form_for @game do |f| %>
+          <%= f.input :name, as: :hidden %>
+          <%= f.submit "Start a Game", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
