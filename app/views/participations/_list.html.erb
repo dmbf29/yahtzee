@@ -1,0 +1,25 @@
+<table id="leaderboard" class="table table-hover table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Players</th>
+      <th>Games</th>
+      <th>Avg Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @participations.any? %>
+      <% @participations.each do |participation| %>
+        <tr>
+          <td><%= participation.user.name %></td>
+          <td><%= participation.user.participations.count %></td>
+          <td><%= participation.user.average_score %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No players yet.</td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
