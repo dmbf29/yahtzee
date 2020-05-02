@@ -2,23 +2,24 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Big Boys</th>
-      <th>
-        <%= simple_form_for current_user, remote: true, html: { style: 'display: flex;justify-content: center' } do |f| %>
-          <%= f.input :big_boys, as: :hidden, input_html: { value: current_user.big_boys + 1 } %>
-          <%= hidden_field_tag :game_id, @game.id %>
-          <%= button_tag type: 'submit', data: { confirm: "+1 to your big boys?" }, style: 'border: none;background-color: transparent;color: white;display: flex;align-items:center;' do %>
-            <i class="far fa-plus-square"></i>
-          <% end %>
-        <% end %>
-      </th>
+      <th class="tex-center">#</th>
     </tr>
   </thead>
   <tbody>
     <% if @big_boys.any? %>
       <% @big_boys.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
-          <td style="text-align: center;"><%= user.big_boys %></td>
+          <td class="d-flex">
+            <%= user.name %>
+            <%= simple_form_for current_user, remote: true, html: { style: 'display: flex;justify-content: center' } do |f| %>
+              <%= f.input :big_boys, as: :hidden, input_html: { value: user.big_boys + 1 } %>
+              <%= hidden_field_tag :game_id, @game.id %>
+              <%= button_tag type: 'submit', data: { confirm: "+1 to #{user.name}'s' big boys?" }, class: 'gray', style: 'border: none;background-color: transparent;display: flex;align-items:center;vertical-align:center' do %>
+                <small class="gray"><i class="fas fa-plus"></i></small>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="tex-center"><%= user.big_boys %></td>
         </tr>
       <% end %>
     <% else %>

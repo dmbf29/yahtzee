@@ -31,19 +31,15 @@
       <%= render 'games/leaderboard' %>
       <%= render 'games/big_boys' %>
       <%= render 'participations/list' %>
+      <div class="text-right">
+        <% if @participation.id %>
+          <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'subtle-gray'  %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <p>Participants</p>
-  <ol>
-    <% @game.users.each do |user| %>
-      <li><%= user.name %> <%= link_to participation_path(@game.participations.find_by(user: user)), method: :delete, data: { confirm: "Leave game and lose progress?" } do %><small><i class="far fa-trash-alt gray"></i></small><% end %></li>
-    <% end %>
-  </ol>
-
   <div class="row">
-    <% if @participation.id %>
-      <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }  %>
-    <% end %>
+
   </div>
 </div>

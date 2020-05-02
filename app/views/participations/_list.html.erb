@@ -2,8 +2,9 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Players</th>
-      <th>Games</th>
-      <th>Avg Score</th>
+      <th class="text-center">Games</th>
+      <th class="text-center">Avg</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -11,8 +12,9 @@
       <% @participations.each do |participation| %>
         <tr>
           <td><%= participation.user.name %></td>
-          <td><%= participation.user.participations.count %></td>
-          <td><%= participation.user.average_score %></td>
+          <td class="text-center"><%= participation.user.participations.count %></td>
+          <td class="text-center"><%= participation.user.average_score %></td>
+          <td><%= link_to participation_path(participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'subtle-gray' do %><small><i class="fas fa-times"></i></small><% end %></td>
         </tr>
       <% end %>
     <% else %>
