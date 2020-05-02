@@ -1,16 +1,24 @@
 <div class="container" id="game" data-game-id="<%= @game.id %>">
   <!-- <h1><%#= @game.name.empty? ? "Yahtzee" : @game.name %></h1> -->
-  <p class="my-2"><input type="text" value="<%= game_url(@game) %>" readonly class='form-control'></p>
-  <% unless @participation.id %>
-    <%= simple_form_for [@game, @participation], remote: true do |f| %>
-      <%= f.input :creator, as: :hidden, input_html: { value: false } %>
-      <%= f.submit 'Join', class: 'btn btn-primary' %>
-    <% end %>
-  <% end %>
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <div style="flex:50%;flex-grow:0">
+          <% unless @participation.id %>
+            <%= simple_form_for [@game, @participation], remote: true do |f| %>
+              <%= f.input :creator, as: :hidden, input_html: { value: false } %>
+              <%= f.submit 'Join', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+          <p class="my-2"><input type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'></p>
+        </div>
+        <p id="dice-btn" class="btn btn-primary m-0">Dice <i class="fas fa-chevron-down"></i></p>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
-    <button id="dice-btn" class="btn btn-primary">Dice <i class="fas fa-chevron-down"></i></button>
-    <iframe src="https://www.elversonpuzzle.com/yahtzee-dice-roller.html#element164" frameborder="0" width="100%" height="0px" class="mb-3"></iframe>
+    <iframe src="https://www.elversonpuzzle.com/yahtzee-dice-roller.html#element164" frameborder="0" width="100%" class="mb-3 d-none" height="350px"></iframe>
     <div class="col-12 col-sm-6">
       <%= render 'games/table' %>
       <div class="d-flex justify-content-center">

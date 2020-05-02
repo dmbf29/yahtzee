@@ -36,7 +36,8 @@ document.addEventListener('turbolinks:load', () => {
   const btn = document.querySelector('#dice-btn')
   if (btn) {
     btn.addEventListener('click', (event) => {
-      document.querySelector('iframe').style.height = '350px'
+      // document.querySelector('iframe').style.height = '350px'
+      document.querySelector('iframe').classList.toggle('d-none')
     })
   }
 });
