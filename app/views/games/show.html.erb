@@ -10,7 +10,10 @@
               <%= f.submit 'Join', class: 'btn btn-primary' %>
             <% end %>
           <% end %>
-          <p class="my-2"><input type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'></p>
+          <div class="d-flex">
+            <button class="btn btn-secondary my-2 d-flex align-items-center" id="share-btn" data-container="body" data-toggle="popover" data-placement="top" data-content="Copied to clipboard.">Share&nbsp;<i class="fas fa-share-alt"></i></button>
+            <p class="my-2 w-100"><input id="share-link" type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'></p>
+          </div>
         </div>
         <p id="dice-btn" class="btn btn-primary m-0">Dice <i class="fas fa-chevron-down"></i></p>
       </div>

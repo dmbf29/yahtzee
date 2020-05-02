@@ -30,8 +30,9 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
   initSortable();
   const btn = document.querySelector('#dice-btn')
   if (btn) {
@@ -40,6 +41,17 @@ document.addEventListener('turbolinks:load', () => {
       document.querySelector('iframe').classList.toggle('d-none')
     })
   }
+  const copy = () => {
+    var copyText = document.querySelector("#share-link");
+    copyText.select();
+    document.execCommand("copy");
+  }
+
+  const shareBtn = document.querySelector("#share-btn")
+  if (shareBtn) {
+    shareBtn.addEventListener("click", copy);
+  }
+
 });
 
 import "controllers"
