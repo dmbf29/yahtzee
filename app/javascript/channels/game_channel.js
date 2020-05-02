@@ -13,7 +13,9 @@ if (gameContainer) {
       console.log(data)
       const gameTable = document.getElementById('game-table');
       gameTable.innerHTML = data.table; // called when data is broadcast in the cable
-      submissionsContainer.insertAdjacentHTML('beforeend', data.message);
+      if (data.message) {
+        submissionsContainer.insertAdjacentHTML('beforeend', data.message);
+      }
       initSortable();
       const submissions = document.querySelectorAll('.submission');
       const lastMessage = submissions[submissions.length - 1];

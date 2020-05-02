@@ -12,7 +12,7 @@ class ParticipationsController < ApplicationController
       set_table_values
       GameChannel.broadcast_to(
         @game,
-        render_to_string(partial: "games/table")
+        table: render_to_string(partial: "games/table")
       )
       redirect_to game_path(@game)
     else
@@ -28,9 +28,9 @@ class ParticipationsController < ApplicationController
       Participation.find(id).update(place: index + 1)
     end
     GameChannel.broadcast_to(
-      @game,
-      render_to_string(partial: "games/table")
-    )
+        @game,
+        table: render_to_string(partial: "games/table")
+      )
     render status: 200, json: @game.to_json
   end
 
