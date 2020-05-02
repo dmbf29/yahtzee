@@ -1,21 +1,32 @@
 <div class="container my-5">
   <h1>Games</h1>
-  <% @games.each do |game| %>
-    <div class="notification">
-      <!-- <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> -->
-      <div class="notification-content">
-        <p><small><%= game.created_at.strftime('%A, %b %d') %></small></p>
-        <p><strong><%#= game.name.empty? ? "Yahtzee" : game.name %></strong> <%= game.users.pluck(:name).join(', ') %></p>
-      </div>
+  <% if @games.any? %>
+    <% @games.each do |game| %>
+      <div class="notification">
+        <!-- <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> -->
+        <div class="notification-content">
+          <p><small><%= game.created_at.strftime('%A, %b %d') %></small></p>
+          <p><strong><%#= game.name.empty? ? "Yahtzee" : game.name %></strong> <%= game.users.pluck(:name).join(', ') %></p>
+        </div>
 
-      <div class="notification-actions">
-        <%= link_to game_path(game) do %>
-          View <i class="fas fa-eye"></i>
-        <% end %>
-        <%= link_to participation_path(game.participations.find_by(user: current_user)), method: :delete, data: { confirm: "Leave game and lose progress?" } do %>
-          Leave <i class="far fa-trash-alt"></i>
-        <% end %>
+        <div class="notification-actions">
+          <%= link_to game_path(game) do %>
+            View <i class="fas fa-eye"></i>
+          <% end %>
+          <%= link_to participation_path(game.participations.find_by(user: current_user)), method: :delete, data: { confirm: "Leave game and lose progress?" } do %>
+            Leave <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <div class="notification">
+        <div class="notification-content">
+          <p>Nothing yet. Get to playing!</p>
+        </div>
+
+        <div class="notification-actions">
+        </div>
+      </div>
   <% end %>
 </div>
