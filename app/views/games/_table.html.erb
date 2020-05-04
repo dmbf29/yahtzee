@@ -6,6 +6,14 @@
         <th scope="col" data-participation-id="<%= participation.id %>"><small><%= participation.user.name %></small></th>
       <% end %>
     </tr>
+    <tr>
+      <th scope="col" class="text-left">Rolls</th>
+      <% @participations.each do |participation| %>
+        <th scope="col" %>
+          <%= participation.submissions.count %>
+        </th>
+      <% end %>
+    </tr>
   </thead>
   <tbody>
     <% @top_categories.each_with_index do |category, index| %>
