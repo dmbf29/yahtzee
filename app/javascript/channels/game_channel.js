@@ -14,6 +14,8 @@ if (gameContainer) {
       const gameTable = document.getElementById('game-table');
       gameTable.innerHTML = data.table; // called when data is broadcast in the cable
       if (data.message) {
+        console.log(submissionsContainer);
+        console.log(data.message);
         submissionsContainer.insertAdjacentHTML('beforeend', data.message);
       }
       initSortable();
