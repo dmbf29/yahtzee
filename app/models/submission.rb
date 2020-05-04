@@ -17,6 +17,7 @@ class Submission < ApplicationRecord
     bonus_submission = Submission.where(
       category: bonus_category,
       user: user,
+      submitter: user,
       game: game
     ).first_or_create
     bonus_submission.value = top_total < 63 ? 0 : 35
