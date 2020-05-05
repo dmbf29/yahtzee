@@ -43,6 +43,7 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'pundit'
+gem 'rack-mini-profiler'
 gem "sentry-raven"
 gem 'simple_form'
 gem 'turbolinks_render'
@@ -57,6 +58,7 @@ group :development, :test do  gem 'pry-byebug'
 end
 
 group :development do
+  gem 'bullet'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

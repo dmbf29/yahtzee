@@ -24,12 +24,12 @@ class GamesController < ApplicationController
 
   def show
     authorize @game
-    @participations = @game.participations.order(place: :asc)
+    @participations = @game.participations.includes(:user).order(place: :asc)
     @categories = Category.order(place: :asc)
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
-    @leaderboard = Participation.where.not(final_score: nil).order(final_score: :desc).first(5)
+    @leaderboard = Participation.includes(:user).where.not(final_score: nil).order(final_score: :desc).first(5)
     @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
   end
 
