@@ -1,0 +1,6 @@
+<p><%= user.name %> has invited you to play another game.</p>
+<%= link_to game_participations_path(game, participation), method: :post, class: 'btn btn-primary' do %>
+  <i class="fas fa-play-circle"></i> Join
+<% end %>
+
+<button type="button" class="btn btn-secondary" data-dismiss="modal">No Thanks</button>

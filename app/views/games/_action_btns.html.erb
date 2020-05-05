@@ -1,3 +1,31 @@
-<%= simple_form_for @game, method: :patch, url: finish_game_path(@game) do |f| %>
-  <%= f.submit "Submit Scores", class: "btn btn-light border border-dark" %>
+<%= simple_form_for Game.new do |f| %>
+  <%= hidden_field_tag 'game[restart]', true %>
+  <%= hidden_field_tag 'game[previous_id]', @game.id %>
+  <%= f.input :name, as: :hidden %>
+  <%= f.submit "Play Again", class: "btn btn-primary d-none", id: 'play-again-btn' %>
 <% end %>
+<%#= simple_form_for @game, method: :patch, url: finish_game_path(@game), remote: true do |f| %>
+  <%#= f.submit "Submit Scores", class: "btn btn-light" %>
+<%# end %>
+
+<!-- Hidden/Triggered by JS -->
+<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="game-invite-btn">
+  Invitation
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Play again?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="new-game-invitation">
+
+      </div>
+    </div>
+  </div>
+</div>

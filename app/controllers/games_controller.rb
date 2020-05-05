@@ -7,6 +7,14 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     authorize @game
     if @game.save
+      if params[:game][:restart] == 'true'
+        old_game = Game.find(params[:game][:previous_id])
+        old_game.finish!
+        GameChannel.broadcast_to(
+          old_game,
+          new_game: render_to_string(partial: "games/invite", locals: { user: current_user, game: @game, participation: Participation.new })
+        )
+      end
       @game.add_creator(current_user)
       redirect_to game_path(@game)
     else

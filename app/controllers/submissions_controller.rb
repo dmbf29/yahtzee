@@ -11,7 +11,8 @@ class SubmissionsController < ApplicationController
       GameChannel.broadcast_to(
         @game,
         table: render_to_string(partial: "games/table"),
-        message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
+        message: render_to_string(partial: "submissions/message", locals: { submission: @submission }),
+        finished: @game.winner ? true : false
       )
       head :ok
     else

@@ -14,7 +14,7 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-require("channels")
+
 import { initSortable } from '../plugins/init_sortable';
 
 
@@ -30,6 +30,7 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
+  require("channels")
   $(function () {
     $('[data-toggle="popover"]').popover()
   })

@@ -6,7 +6,7 @@ class Submission < ApplicationRecord
   validates :value, numericality: true
   validates_uniqueness_of :category_id, scope: [:user_id, :game_id]
   after_save :check_top_bonus, if: :top_six?
-  after_create :check_game_end
+  after_save :check_game_end
 
   def top_six?
     category.place <= 6
