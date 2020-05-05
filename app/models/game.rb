@@ -28,7 +28,7 @@ class Game < ApplicationRecord
     participations.find_by(user: user)
   end
 
-  def finish
+  def finish!
     participations.each do |participation|
       score = participation.user.submissions.where(game: self).pluck(:value).sum
       participation.final_score = score
