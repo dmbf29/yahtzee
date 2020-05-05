@@ -5,8 +5,9 @@ const indicateTurn = () => {
   tail.sort(function(a, b) {
       return parseInt(a.innerText, 10) - parseInt(b.innerText, 10);
   });
-  console.log(tail[0])
-  tail[0].classList.add('current-turn-border')
+  const participationId = tail[0].dataset.participationRollId
+  const newTurn = document.querySelector(`th[data-participation-id='${participationId}']`)
+  newTurn.classList.add('current-turn-border')
   // Sortable.create(list, {
   //   ghostClass: "ghost",
   //   animation: 150,

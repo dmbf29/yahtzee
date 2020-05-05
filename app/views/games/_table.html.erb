@@ -9,7 +9,7 @@
     <tr id='rolls-headers'>
       <th scope="col" class="text-left">Rolls</th>
       <% @participations.each do |participation| %>
-        <th scope="col" %>
+        <th scope="col" data-participation-roll-id="<%= participation.id %>">
           <%= participation.submissions.count %>
         </th>
       <% end %>
