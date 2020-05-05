@@ -38,6 +38,10 @@ if (gameContainer) {
         const bigBoysContainer = document.getElementById('big-boys-container');
         bigBoysContainer.innerHTML = data.big_boys
       }
+      if (data.new_player) {
+        const participantsContainer = document.getElementById('participations-container');
+        participantsContainer.innerHTML = data.new_player
+      }
       initSortable();
       indicateTurn();
       // const submissions = document.querySelectorAll('.submission');

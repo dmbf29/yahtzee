@@ -12,7 +12,9 @@ class ParticipationsController < ApplicationController
       set_table_values
       GameChannel.broadcast_to(
         @game,
-        table: render_to_string(partial: "games/table")
+        table: render_to_string(partial: "games/table"),
+        new_player: render_to_string(partial: "participations/list"),
+        big_boys: render_to_string(partial: "games/big_boys")
       )
       redirect_to game_path(@game)
     else
@@ -61,5 +63,6 @@ class ParticipationsController < ApplicationController
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
+    @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
   end
 end
