@@ -3,6 +3,7 @@ class Participation < ApplicationRecord
   belongs_to :user
   validates_uniqueness_of :game_id, scope: :user_id
   after_create :create_bonus_submissions
+  after_destroy :destroy_submissions
 
   def submissions
     game.submissions.where(user: user)
@@ -35,5 +36,9 @@ class Participation < ApplicationRecord
       game: game,
       value: 0
     )
+  end
+
+  def destroy_submissions
+    game.submissions.where(user: user).destroy_all
   end
 end
