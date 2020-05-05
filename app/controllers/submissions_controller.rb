@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
         @game,
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/message", locals: { submission: @submission }),
-        finished: @game.winner ? true : false
+        finished: @game.winner ? set_leaderboard : false
       )
       head :ok
     else
@@ -35,7 +35,8 @@ class SubmissionsController < ApplicationController
       GameChannel.broadcast_to(
         @game,
         table: render_to_string(partial: "games/table"),
-        message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
+        message: render_to_string(partial: "submissions/message", locals: { submission: @submission }),
+        finished: @game.winner ? set_leaderboard : false
       )
       head :ok
     else
@@ -61,5 +62,10 @@ class SubmissionsController < ApplicationController
     @participation = @game.user_participation(current_user) || Participation.new
     @leaderboard = Participation.where.not(final_score: nil).order(final_score: :desc).first(5)
     @big_boys = User.where.not(big_boys: 0)
+  end
+
+  def set_leaderboard
+    @leaderboard = Participation.where.not(final_score: nil).order(final_score: :desc).first(5)
+    render_to_string(partial: "games/leaderboard")
   end
 end

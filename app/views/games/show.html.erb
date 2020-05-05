@@ -20,7 +20,9 @@
     <div class="col-12 col-sm-6">
       <%= render 'submissions/list' %>
       <%= render 'participations/list' %>
-      <%= render 'games/leaderboard' %>
+      <div id="leaderboard-container">
+        <%= render 'games/leaderboard' %>
+      </div>
       <%= render 'games/big_boys' %>
       <div class="text-right">
         <% if @participation.id %>

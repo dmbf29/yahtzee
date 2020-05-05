@@ -3,7 +3,6 @@ import { initSortable } from '../plugins/init_sortable';
 import { indicateTurn } from '../plugins/indicate_turn';
 
 const gameContainer = document.getElementById('game');
-console.log("HEY! I'M INSDIE THE CHANNEL")
 if (gameContainer) {
   const id = gameContainer.dataset.gameId;
   consumer.subscriptions.create({ channel: "GameChannel", id: id }, {
@@ -21,7 +20,6 @@ if (gameContainer) {
       }
       if (data.new_game) {
         // Send invite
-        console.log("Hey wanna play a new game?")
         // trigger modal
         const invitationModal = document.getElementById("new-game-invitation");
         invitationModal.innerHTML = data.new_game
@@ -32,6 +30,9 @@ if (gameContainer) {
         // show the play again button
         const playAgainBtn = document.getElementById('play-again-btn');
         playAgainBtn.classList.remove('d-none')
+        // update the leaderboard
+        const leaderboardContainer = document.getElementById('leaderboard-container');
+        leaderboardContainer.innerHTML = data.finished
       }
       initSortable();
       indicateTurn();
