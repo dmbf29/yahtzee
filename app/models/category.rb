@@ -17,4 +17,8 @@ class Category < ApplicationRecord
   def self.top_bonus
     find_by_place(8)
   end
+
+  def self.yahtzee_bonus
+    find_by_place(17)
+  end
 end
