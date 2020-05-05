@@ -23,13 +23,20 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     authorize @submission
-    if @submission.update(submission_params)
+    if submission_params[:value].blank?
+      @submission.destroy
+      GameChannel.broadcast_to(
+        @game,
+        table: render_to_string(partial: "games/table"),
+        message: render_to_string(partial: "submissions/destroy_message", locals: { submission: @submission })
+      )
+    elsif @submission.update(submission_params)
       GameChannel.broadcast_to(
         @game,
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
       )
-      redirect_to game_path(@game)
+      head :ok
     else
       render 'games/show'
     end
