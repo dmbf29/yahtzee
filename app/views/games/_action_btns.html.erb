@@ -2,7 +2,7 @@
   <%= hidden_field_tag 'game[restart]', true %>
   <%= hidden_field_tag 'game[previous_id]', @game.id %>
   <%= f.input :name, as: :hidden %>
-  <%= f.submit "Play Again", class: "btn btn-primary d-none", id: 'play-again-btn' %>
+  <%= f.submit "Play Again", class: "btn btn-primary #{'d-none' unless @game.winner}", id: 'play-again-btn', data: { confirm: "Start new game and invite others?" } %>
 <% end %>
 <%#= simple_form_for @game, method: :patch, url: finish_game_path(@game), remote: true do |f| %>
   <%#= f.submit "Submit Scores", class: "btn btn-light" %>
