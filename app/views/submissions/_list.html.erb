@@ -8,7 +8,7 @@
   </table>
   <div>
     <div id="rolls" data-gameroll-id="<%= @game.id %>">
-      <% @game.submissions.order(updated_at: :desc).each do |submission| %>
+      <% @game.nonbonus_submissions.order(updated_at: :desc).each do |submission| %>
         <%= render "submissions/message", submission: submission %>
       <% end %>
     </div>

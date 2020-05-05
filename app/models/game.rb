@@ -37,4 +37,8 @@ class Game < ApplicationRecord
     self.winner = participations.order(final_score: :desc).first.user
     save
   end
+
+  def nonbonus_submissions
+    submissions.where.not(category: [Category.yahtzee_bonus, Category.top_bonus])
+  end
 end
