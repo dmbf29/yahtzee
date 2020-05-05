@@ -10,7 +10,7 @@
     <% if @participations.any? %>
       <% @participations.each do |participation| %>
         <tr>
-          <td><%= participation.user.name %></td>
+          <td data-toggle="modal" data-target="#userModal-<%= participation.user.id %>"><%= participation.user.name %></td>
           <td class="text-center"><%= participation.user.participations.where.not(final_score: nil).count %></td>
           <td class="text-center"><%= participation.user.average_score %></td>
         </tr>
@@ -23,3 +23,6 @@
     <% end %>
   </tbody>
 </table>
+<% @participations.each do |participation| %>
+  <%= render 'users/show_modal', participation: participation %>
+<% end %>
