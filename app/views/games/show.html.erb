@@ -23,7 +23,9 @@
       <div id="leaderboard-container">
         <%= render 'games/leaderboard' %>
       </div>
-      <%= render 'games/big_boys' %>
+      <div id="big-boys-container">
+        <%= render 'games/big_boys' %>
+      </div>
       <div class="text-right">
         <% if @participation.id %>
           <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'mb-3 subtle-gray'  %>

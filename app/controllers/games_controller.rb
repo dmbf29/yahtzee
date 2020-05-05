@@ -30,7 +30,7 @@ class GamesController < ApplicationController
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
     @leaderboard = Participation.where.not(final_score: nil).order(final_score: :desc).first(5)
-    @big_boys = User.where.not(big_boys: 0)
+    @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
   end
 
   def search

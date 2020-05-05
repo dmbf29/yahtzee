@@ -34,6 +34,10 @@ if (gameContainer) {
         const leaderboardContainer = document.getElementById('leaderboard-container');
         leaderboardContainer.innerHTML = data.finished
       }
+      if (data.big_boys) {
+        const bigBoysContainer = document.getElementById('big-boys-container');
+        bigBoysContainer.innerHTML = data.big_boys
+      }
       initSortable();
       indicateTurn();
       // const submissions = document.querySelectorAll('.submission');

@@ -31,6 +31,7 @@ class SubmissionsController < ApplicationController
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/destroy_message", locals: { submission: @submission })
       )
+      head :ok
     elsif @submission.update(submission_params)
       GameChannel.broadcast_to(
         @game,
