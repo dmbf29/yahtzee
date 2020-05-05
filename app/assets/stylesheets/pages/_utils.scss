@@ -28,3 +28,9 @@ body {
 .gray {
   color: $gray;
 }
+
+.cursor-hover {
+  &:hover {
+    cursor: pointer;
+  }
+}
