@@ -1,0 +1,3 @@
+<%= simple_form_for @game, method: :patch, url: finish_game_path(@game) do |f| %>
+  <%= f.submit "Submit Scores", class: "btn btn-light border border-dark" %>
+<% end %>

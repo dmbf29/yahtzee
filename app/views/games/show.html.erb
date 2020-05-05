@@ -14,9 +14,7 @@
     <div class="col-12 col-sm-6">
       <%= render 'games/table' %>
       <div class="d-flex justify-content-center mb-5">
-        <%= simple_form_for @game, method: :patch, url: finish_game_path(@game) do |f| %>
-          <%= f.submit "Submit Scores", class: "btn btn-light border border-dark" %>
-        <% end %>
+        <%= render 'games/action_btns' %>
       </div>
     </div>
     <div class="col-12 col-sm-6">
