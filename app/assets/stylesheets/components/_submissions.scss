@@ -26,5 +26,9 @@
 }
 
 .submission-removed {
-  color: $red;
+  color: $dark-red;
+}
+
+.current-turn-border {
+  border-bottom: 1px solid $dark-red;
 }

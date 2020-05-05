@@ -6,7 +6,7 @@
         <th scope="col" data-participation-id="<%= participation.id %>"><small><%= participation.user.name %></small></th>
       <% end %>
     </tr>
-    <tr>
+    <tr id='rolls-headers'>
       <th scope="col" class="text-left">Rolls</th>
       <% @participations.each do |participation| %>
         <th scope="col" %>

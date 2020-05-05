@@ -1,5 +1,6 @@
 import consumer from "./consumer";
 import { initSortable } from '../plugins/init_sortable';
+import { indicateTurn } from '../plugins/indicate_turn';
 
 const gameContainer = document.getElementById('game');
 if (gameContainer) {
@@ -15,11 +16,12 @@ if (gameContainer) {
         // submissionsContainer.style.backgroundColor = 'yellow'
       }
       initSortable();
-      const submissions = document.querySelectorAll('.submission');
-      const lastMessage = submissions[submissions.length - 1];
-      if (lastMessage !== undefined) {
+      indicateTurn();
+      // const submissions = document.querySelectorAll('.submission');
+      // const lastMessage = submissions[submissions.length - 1];
+      // if (lastMessage !== undefined) {
         // lastMessage.scrollIntoView();
-      }
+      // }
     },
   });
 }
