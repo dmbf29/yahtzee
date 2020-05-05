@@ -10,7 +10,7 @@
       <th scope="col" class="text-left">Rolls</th>
       <% @participations.each do |participation| %>
         <th scope="col" %>
-          <%= participation.submissions.count %>
+          <%= participation.nonbonus_submissions.count %>
         </th>
       <% end %>
     </tr>

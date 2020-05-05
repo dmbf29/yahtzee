@@ -8,6 +8,10 @@ class Participation < ApplicationRecord
     game.submissions.where(user: user)
   end
 
+  def nonbonus_submissions
+    game.submissions.where(user: user).where.not(category: [Category.yahtzee_bonus, Category.top_bonus])
+  end
+
   def create_bonus_submissions
     create_top_bonus
     create_yahtzee_bonus
