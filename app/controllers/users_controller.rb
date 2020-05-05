@@ -5,8 +5,12 @@ class UsersController < ApplicationController
     @game = Game.find(params[:game_id])
     authorize @user
     if @user.update(user_params)
-
-      redirect_to game_path(@game)
+      @participations = @game.participations.order(place: :asc)
+      GameChannel.broadcast_to(
+        @game,
+        new_player: render_to_string(partial: "participations/list")
+      )
+      head :ok
     else
       flash[:alert] = @user.errors.full_messages.first
       redirect_to game_path(@game)
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:big_boys, :name, :email)
+    params.require(:user).permit(:big_boys, :name, :email, :time_zone)
   end
 
   def set_user
