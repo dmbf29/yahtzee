@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_raven_context
   before_action :authenticate_user!
   include Pundit
 
@@ -19,5 +20,10 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def set_raven_context
+    Raven.user_context(id: session[:current_user_id]) # or anything else in session
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 end
