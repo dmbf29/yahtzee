@@ -10,7 +10,7 @@
       <th scope="col" class="text-left">Rolls</th>
       <% @participations.each do |participation| %>
         <th scope="col" %>
-          <%= participation.nonbonus_submissions.count %>
+          <%= participation.submissions.count %>
         </th>
       <% end %>
     </tr>
@@ -25,7 +25,7 @@
               <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, participation.user) %>" readonly>
             <% else %>
               <%= simple_form_for [@game, get_submission(category, participation.user)], remote: true, html: { id: "submission_form-#{category.id}-#{participation.id}" } do |f| %>
-                <%= f.input :value, label: false, input_html: { class: 'table-form-control', id: "submission_value-#{category.id}-#{participation.id}" } %>
+                <%= f.input :value, label: false, input_html: { class: 'table-form-control', id: "submission_value-#{category.id}-#{participation.id}", min: 0 } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id, id: "submission_category-#{category.id}-#{participation.id}" } %>
                 <%= f.input :user_id, as: :hidden, input_html: { value: participation.user.id, id: "submission_user-#{category.id}-#{participation.id}" } %>
               <% end %>
@@ -44,7 +44,7 @@
               <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, participation.user) %>" readonly>
             <% else %>
               <%= simple_form_for [@game, get_submission(category, participation.user)], remote: true, html: { id: "submission_form-#{category.id}-#{participation.id}" } do |f| %>
-                <%= f.input :value, label: false, input_html: { class: 'table-form-control', id: "submission_value-#{category.id}-#{participation.id}" } %>
+                <%= f.input :value, label: false, input_html: { class: 'table-form-control', id: "submission_value-#{category.id}-#{participation.id}", step: category.value, max: category.value, min: 0 } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id, id: "submission_category-#{category.id}-#{participation.id}" } %>
                 <%= f.input :user_id, as: :hidden, input_html: { value: participation.user.id, id: "submission_user-#{category.id}-#{participation.id}" } %>
               <% end %>
