@@ -7,7 +7,7 @@ const indicateTurn = () => {
   });
   const participationId = tail[0].dataset.participationRollId
   const newTurn = document.querySelector(`th[data-participation-id='${participationId}']`)
-  newTurn.classList.add('current-turn-border')
+  newTurn.classList.add('current-turn')
 };
 
 

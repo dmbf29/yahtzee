@@ -32,3 +32,17 @@
 .current-turn-border {
   border-bottom: 2px solid $dark-red !important;
 }
+
+.current-turn {
+  background-color: $dark-red !important;
+}
+
+.submission {
+  p {
+    background-color: rgba(156, 22, 19, 0.7);
+    color: white;
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+  }
+}
