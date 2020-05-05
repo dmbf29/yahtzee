@@ -39,7 +39,7 @@ class GamesController < ApplicationController
   end
 
   def finish
-    @game.finish
+    @game.finish!
     authorize @game
     redirect_to game_path(@game)
   end

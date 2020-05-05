@@ -6,6 +6,7 @@ class Submission < ApplicationRecord
   validates :value, numericality: true
   validates_uniqueness_of :category_id, scope: [:user_id, :game_id]
   after_save :check_top_bonus, if: :top_six?
+  after_create :check_game_end
 
   def top_six?
     category.place <= 6
@@ -22,5 +23,11 @@ class Submission < ApplicationRecord
     ).first_or_create
     bonus_submission.value = top_total < 63 ? 0 : 35
     bonus_submission.save
+  end
+
+  def check_game_end
+    user_count = game.participations.count
+    user_turns = 15
+    game.finish! if game.submissions.count == (user_count * user_turns)
   end
 end
