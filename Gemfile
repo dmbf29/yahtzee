@@ -43,6 +43,7 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'pundit'
+gem "sentry-raven"
 gem 'simple_form'
 gem 'turbolinks_render'
 
