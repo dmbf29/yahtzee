@@ -2,19 +2,17 @@ import consumer from "./consumer";
 import { initSortable } from '../plugins/init_sortable';
 
 const gameContainer = document.getElementById('game');
-const submissionsContainer = document.getElementById('rolls');
-if (gameContainer && submissionsContainer) {
+if (gameContainer) {
   const id = gameContainer.dataset.gameId;
   consumer.subscriptions.create({ channel: "GameChannel", id: id }, {
     received(data) {
+      const submissionsContainer = document.getElementById('rolls');
       console.log(data)
       const gameTable = document.getElementById('game-table');
       gameTable.innerHTML = data.table; // called when data is broadcast in the cable
       if (data.message) {
-        console.log(submissionsContainer);
-        console.log(data.message);
         submissionsContainer.insertAdjacentHTML('beforeend', data.message);
-        console.log(submissionsContainer);
+        // submissionsContainer.style.backgroundColor = 'yellow'
       }
       initSortable();
       const submissions = document.querySelectorAll('.submission');

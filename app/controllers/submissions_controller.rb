@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/message", locals: { submission: @submission })
       )
-      redirect_to game_path(@game)
+      head :ok
     else
       flash[:alert] = @submission.errors.full_messages.first
       render 'games/show'
