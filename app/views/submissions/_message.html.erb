@@ -2,7 +2,7 @@
   <i class="author">
     <span><%= submission.user.name %></span>
     <small>
-      <%= submission.updated_at.in_time_zone(submission.user.time_zone).strftime('%l:%M %p') %>
+      <%= submission.updated_at.in_time_zone(current_user.time_zone).strftime('%l:%M %p') %>
       <% unless submission.submitter == submission.user %>
         (by: <%= submission.submitter.name %>)
       <% end %>
