@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_action :set_game, only: [:create, :update]
+  before_action :set_game, only: [:create, :update, :cursor_place]
   before_action :set_table_values, only: [:create, :update]
 
   def create
@@ -43,6 +43,15 @@ class SubmissionsController < ApplicationController
     else
       render 'games/show'
     end
+  end
+
+  def cursor_place
+    binding.pry
+    GameChannel.broadcast_to(
+      @game,
+      cursor_place: params[:cursor_place_id],
+      user_id: params[:user_id]
+    )
   end
 
   private

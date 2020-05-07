@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       patch :finish
     end
+    post '/cursor_place', to: 'submissions#cursor_place', as: :cursor_place
   end
   resources :participations, only: [:destroy, :update] do
     collection do

@@ -16,7 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import { initSortable } from '../plugins/init_sortable';
-
+import Rails from '@rails/ujs'
 
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
@@ -52,6 +52,22 @@ document.addEventListener('turbolinks:load', () => {
   if (shareBtn) {
     shareBtn.addEventListener("click", copy);
   }
+
+  const cursorForm = document.getElementById('cursor_place')
+  let cursorValue = document.getElementById('cursor_place_id')
+  const numbers = document.querySelectorAll('.numeric')
+  numbers.forEach((number) => {
+    number.addEventListener('focus', (event) => {
+      event.currentTarget.style.backgroundColor = 'pink'
+      cursorValue.value = event.currentTarget.id
+      Rails.fire(cursorForm,'submit')
+    });
+    number.addEventListener('blur', (event) => {
+      event.currentTarget.style.backgroundColor = ''
+      cursorValue.value = ''
+      // Rails.fire(cursorForm,'submit')
+    });
+  });
   // const submissions = document.querySelectorAll('.submission');
   // const lastMessage = submissions[submissions.length - 1];
   // if (lastMessage !== undefined) {

@@ -1,6 +1,14 @@
 <!-- <input type="text" value="<%= @game.code %>" readonly class='form-control w-100'> -->
 <div class="container" id="game" data-game-id="<%= @game.id %>">
-  <!-- <h1><%#= @game.name.empty? ? "Yahtzee" : @game.name %></h1> -->
+
+  <%= simple_form_for @game, url: game_cursor_place_path(@game), method: :post, remote: true, html: { id: 'cursor_place' } do |f| %>
+    <%= hidden_field_tag :cursor_place_id, nil, id: "cursor_place_id" %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%#= f.input :cursor_place_id, as: :hidden, input_html: { id: "cursor_place_id" } %>
+    <%#= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+  <% end %>
+
+
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center">
