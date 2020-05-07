@@ -3,6 +3,7 @@ class Participation < ApplicationRecord
   belongs_to :user
   validates_uniqueness_of :game_id, scope: :user_id
   after_create :create_bonus_submissions
+  before_create :assign_last_place
   after_destroy :destroy_submissions
 
   def submissions
@@ -11,6 +12,10 @@ class Participation < ApplicationRecord
 
   def nonbonus_submissions
     game.submissions.where(user: user).where.not(category: [Category.yahtzee_bonus, Category.top_bonus])
+  end
+
+  def assign_last_place
+    self.place = game.participations.count + 1 if place.nil?
   end
 
   def create_bonus_submissions
