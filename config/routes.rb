@@ -14,9 +14,13 @@ Rails.application.routes.draw do
       patch :order
     end
   end
-  resources :users, only: [:update] do
+  resources :users, only: [:index, :update] do
     member do
       patch :big_boys
+      post :impersonate
+    end
+    collection do
+      post :stop_impersonating
     end
   end
   get '/search', to: 'games#search', as: :search

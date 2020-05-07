@@ -43,6 +43,7 @@ gem 'devise'
 gem 'acts_as_paranoid'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
+gem 'pretender'
 gem 'pundit'
 gem 'rack-mini-profiler'
 gem "sentry-raven"

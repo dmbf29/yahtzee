@@ -33,6 +33,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = policy_scope(User).order(:id)
+  end
+
+  def impersonate
+    authorize current_user
+    user = User.find(params[:id])
+    impersonate_user(user)
+    redirect_to root_path
+  end
+
+  def stop_impersonating
+    authorize current_user
+    stop_impersonating_user
+    redirect_to root_path
+  end
+
   private
 
   def user_params

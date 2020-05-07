@@ -12,4 +12,12 @@ class UserPolicy < ApplicationPolicy
   def big_boys?
     true
   end
+
+  def impersonate?
+    user.admin
+  end
+
+  def stop_impersonating?
+    user.admin
+  end
 end
