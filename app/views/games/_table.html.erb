@@ -11,7 +11,7 @@
       <th scope="col" class="text-left">Rolls</th>
       <% @participations.each do |participation| %>
         <th scope="col" data-participation-roll-id="<%= participation.id %>">
-          <%= participation.nonbonus_submissions.count %>
+          <%= participation.number_of_turns %>
         </th>
       <% end %>
     </tr>

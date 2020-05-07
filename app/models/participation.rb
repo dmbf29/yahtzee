@@ -50,4 +50,10 @@ class Participation < ApplicationRecord
   def lastest_submission
     nonbonus_submissions.order(updated_at: :desc).first
   end
+
+  def number_of_turns
+    yahtzee_submission = submissions.find_by(category: Category.yahtzee_bonus)
+    nonbonus_count = nonbonus_submissions.count
+    yahtzee_submission.value.zero? ? nonbonus_count : nonbonus_count + (yahtzee_submission.value / 100)
+  end
 end
