@@ -61,6 +61,10 @@ if (gameContainer) {
         const participantsContainer = document.getElementById('remove-modal');
         participantsContainer.innerHTML = data.remove_list
       }
+      if (data.modal_close) {
+        document.querySelector('.modal-backdrop').remove();
+      }
+
       // const submissions = document.querySelectorAll('.submission');
       // const lastMessage = submissions[submissions.length - 1];
       // if (lastMessage !== undefined) {

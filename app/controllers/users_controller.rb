@@ -8,7 +8,8 @@ class UsersController < ApplicationController
       @participations = @game.participations.order(place: :asc)
       GameChannel.broadcast_to(
         @game,
-        new_player: render_to_string(partial: "participations/list")
+        new_player: render_to_string(partial: "participations/list"),
+        modal_close: true
       )
       head :ok
     else
