@@ -18,6 +18,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def stop_impersonating?
-    user.admin
+    true
   end
 end
