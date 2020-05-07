@@ -1,12 +1,10 @@
-<!-- <input type="text" value="<%= @game.code %>" readonly class='form-control w-100'> -->
+<!-- changing this div will break everything -->
 <div class="container" id="game" data-game-id="<%= @game.id %>">
 
   <%= simple_form_for @game, url: game_cursor_place_path(@game), method: :post, remote: true, html: { id: 'cursor_place' } do |f| %>
     <%= hidden_field_tag :cursor_place_id, nil, id: "cursor_place_id" %>
     <%= hidden_field_tag :participation_place, @participation.place %>
     <%= hidden_field_tag :user_id, current_user.id %>
-    <%#= f.input :cursor_place_id, as: :hidden, input_html: { id: "cursor_place_id" } %>
-    <%#= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
   <% end %>
 
 
@@ -39,11 +37,11 @@
       </div>
       <div class="text-right d-flex flex-column">
         <% if @participations.any? %>
-          <%= link_to 'Remove a player', '#', data: { toggle: "modal", target: '#removeModal' }, class: 'mb-1 subtle-gray'  %>
+          <%= link_to 'Remove a player', '#', data: { toggle: "modal", target: '#removeModal' }, class: 'mb-1 lighter-gray'  %>
           <%= render 'users/remove_player_modal' %>
         <% end %>
         <% if @participation.id %>
-          <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'mb-3 subtle-gray'  %>
+          <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'mb-3 lighter-gray'  %>
         <% end %>
       </div>
     </div>

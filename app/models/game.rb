@@ -43,4 +43,8 @@ class Game < ApplicationRecord
   def nonbonus_submissions
     submissions.where.not(category: [Category.yahtzee_bonus, Category.top_bonus])
   end
+
+  def full?
+    participations.count >=5
+  end
 end

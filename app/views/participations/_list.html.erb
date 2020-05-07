@@ -2,7 +2,7 @@
   <thead class="thead-dark">
     <tr>
       <th class="participation-border-header" scope="col">Players</th>
-      <th class="text-center">Games</th>
+      <th class="text-center hidden-sm">Games</th>
       <th class="text-center">Avg</th>
     </tr>
   </thead>
@@ -11,7 +11,7 @@
       <% @participations.each do |participation| %>
         <tr class="">
           <td class="cursor-hover participation-border-<%= participation.place %>" data-toggle="modal" data-target="#userModal-<%= participation.user.id %>"><%= participation.user.name %></td>
-          <td class="text-center"><%= participation.user.participations.where.not(final_score: nil).count %></td>
+          <td class="text-center hidden-sm"><%= participation.user.participations.where.not(final_score: nil).count %></td>
           <td class="text-center"><%= participation.user.average_score %></td>
         </tr>
       <% end %>
