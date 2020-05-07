@@ -20,4 +20,8 @@ class GamePolicy < ApplicationPolicy
   def finish?
     record.users.include?(user)
   end
+
+  def cursor_place?
+    true
+  end
 end

@@ -42,6 +42,21 @@ if (gameContainer) {
         const participantsContainer = document.getElementById('participations-container');
         participantsContainer.innerHTML = data.new_player
       }
+      if (data.cursor_moved) {
+        if (data.cursor_place) {
+          console.log(data.cursor_place)
+          const cursorValue = document.getElementById(data.cursor_place);
+          // cursorValue.style.backgroundColor = 'yellow'
+          // cursorValue.classList.add(`user-${data.user_id}-selected`)
+          cursorValue.parentElement.parentElement.classList.add(`participation-${data.participation_place}`)
+        } else {
+          const selectedPlace = document.querySelector(`.participation-${data.participation_place}`)
+          // selectedPlace.classList.remove(`user-${data.user_id}-selected`)
+          // selectedPlace.style.backgroundColor = ''
+          selectedPlace.classList.remove(`participation-${data.participation_place}`)
+          // find user's selected place and remove it
+        }
+      }
       initSortable();
       indicateTurn();
       // const submissions = document.querySelectorAll('.submission');

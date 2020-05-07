@@ -65,7 +65,7 @@ document.addEventListener('turbolinks:load', () => {
     number.addEventListener('blur', (event) => {
       event.currentTarget.style.backgroundColor = ''
       cursorValue.value = ''
-      // Rails.fire(cursorForm,'submit')
+      Rails.fire(cursorForm,'submit')
     });
   });
   // const submissions = document.querySelectorAll('.submission');

@@ -12,7 +12,11 @@ class SubmissionsController < ApplicationController
         @game,
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/message", locals: { submission: @submission }),
-        finished: @game.winner ? set_leaderboard : false
+        finished: @game.winner ? set_leaderboard : false,
+        cursor_moved: true,
+        cursor_place: "submission_value-#{@submission.category.id}-#{@game.user_participation(@submission.user).id}",
+        participation_place: @participation.place,
+        user_id: current_user.id
       )
       head :ok
     else
@@ -46,12 +50,16 @@ class SubmissionsController < ApplicationController
   end
 
   def cursor_place
-    binding.pry
-    GameChannel.broadcast_to(
-      @game,
-      cursor_place: params[:cursor_place_id],
-      user_id: params[:user_id]
-    )
+    authorize @game
+    unless params[:participation_place].blank?
+      GameChannel.broadcast_to(
+        @game,
+        cursor_moved: true,
+        cursor_place: params[:cursor_place_id],
+        participation_place: params[:participation_place],
+        user_id: params[:user_id]
+      )
+    end
   end
 
   private
