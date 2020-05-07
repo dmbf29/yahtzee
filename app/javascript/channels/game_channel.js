@@ -57,7 +57,10 @@ if (gameContainer) {
         const participantsContainer = document.getElementById('participations-container');
         participantsContainer.innerHTML = data.new_player
       }
-
+      if (data.remove_list) {
+        const participantsContainer = document.getElementById('remove-modal');
+        participantsContainer.innerHTML = data.remove_list
+      }
       // const submissions = document.querySelectorAll('.submission');
       // const lastMessage = submissions[submissions.length - 1];
       // if (lastMessage !== undefined) {

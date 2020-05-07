@@ -33,7 +33,11 @@ class SubmissionsController < ApplicationController
       GameChannel.broadcast_to(
         @game,
         table: render_to_string(partial: "games/table"),
-        message: render_to_string(partial: "submissions/destroy_message", locals: { submission: @submission })
+        message: render_to_string(partial: "submissions/destroy_message", locals: { submission: @submission }),
+        cursor_moved: true,
+        cursor_place: "submission_value-#{@submission.category.id}-#{@game.user_participation(@submission.user).id}",
+        participation_place: @participation.place,
+        user_id: current_user.id
       )
       head :ok
     elsif @submission.update(submission_params)
@@ -41,7 +45,11 @@ class SubmissionsController < ApplicationController
         @game,
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/message", locals: { submission: @submission }),
-        finished: @game.winner ? set_leaderboard : false
+        finished: @game.winner ? set_leaderboard : false,
+        cursor_moved: true,
+        cursor_place: "submission_value-#{@submission.category.id}-#{@game.user_participation(@submission.user).id}",
+        participation_place: @participation.place,
+        user_id: current_user.id
       )
       head :ok
     else

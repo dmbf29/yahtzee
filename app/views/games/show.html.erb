@@ -36,9 +36,11 @@
         <%= render 'games/big_boys' %>
       </div>
       <div class="text-right d-flex flex-column">
-        <% if @participations.any? %>
+        <% if @participations.any? && @participation.id %>
           <%= link_to 'Remove a player', '#', data: { toggle: "modal", target: '#removeModal' }, class: 'mb-1 lighter-gray'  %>
-          <%= render 'users/remove_player_modal' %>
+          <div id="remove-modal">
+            <%= render 'participations/remove_modal' %>
+          </div>
         <% end %>
         <% if @participation.id %>
           <%= link_to 'Leave game', participation_path(@participation), method: :delete, data: { confirm: "Leave game and lose progress?" }, class: 'mb-3 lighter-gray'  %>

@@ -14,7 +14,8 @@ class ParticipationsController < ApplicationController
         @game,
         table: render_to_string(partial: "games/table"),
         new_player: render_to_string(partial: "participations/list"),
-        big_boys: render_to_string(partial: "games/big_boys")
+        big_boys: render_to_string(partial: "games/big_boys"),
+        remove_list: render_to_string(partial: "participations/remove_modal")
       )
       redirect_to game_path(@game)
     else
