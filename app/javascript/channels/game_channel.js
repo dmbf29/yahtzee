@@ -11,22 +11,16 @@ if (gameContainer) {
       console.log(data)
       if (data.cursor_moved) {
         if (data.cursor_place) {
-          console.log(data.cursor_place)
           const preSelectedPlace = document.querySelector(`.participation-${data.participation_place}`)
           if (preSelectedPlace) {
             preSelectedPlace.classList.remove(`participation-${data.participation_place}`)
           }
           const cursorValue = document.getElementById(data.cursor_place);
-          // cursorValue.style.backgroundColor = 'yellow'
-          // cursorValue.classList.add(`user-${data.user_id}-selected`)
           console.log(cursorValue.parentElement.parentElement)
           cursorValue.parentElement.parentElement.classList.add(`participation-${data.participation_place}`)
         } else {
           const selectedPlace = document.querySelector(`.participation-${data.participation_place}`)
-          // selectedPlace.classList.remove(`user-${data.user_id}-selected`)
-          // selectedPlace.style.backgroundColor = ''
           selectedPlace.classList.remove(`participation-${data.participation_place}`)
-          // find user's selected place and remove it
         }
       }
       if (data.table) {
@@ -40,7 +34,6 @@ if (gameContainer) {
         console.log(gameContainer)
         const submissionsContainer = document.getElementById('rolls');
         submissionsContainer.insertAdjacentHTML('afterbegin', data.message);
-        // submissionsContainer.style.backgroundColor = 'yellow'
       }
       if (data.new_game) {
         // Send invite

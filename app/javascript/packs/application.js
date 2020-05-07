@@ -14,7 +14,7 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
+import { indicateTurn } from '../plugins/indicate_turn';
 import { initSortable } from '../plugins/init_sortable';
 import { highlightCells } from '../plugins/highlight_cells';
 import Rails from '@rails/ujs'
@@ -54,6 +54,7 @@ document.addEventListener('turbolinks:load', () => {
 
   initSortable();
   highlightCells();
+  indicateTurn();
 });
 
 import "controllers"
