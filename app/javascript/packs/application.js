@@ -16,6 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import { initSortable } from '../plugins/init_sortable';
+import { highlightCells } from '../plugins/highlight_cells';
 import Rails from '@rails/ujs'
 
 // ----------------------------------------------------
@@ -34,11 +35,9 @@ document.addEventListener('turbolinks:load', () => {
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
-  initSortable();
   const btn = document.querySelector('#dice-btn')
   if (btn) {
     btn.addEventListener('click', (event) => {
-      // document.querySelector('iframe').style.height = '350px'
       document.querySelector('iframe').classList.toggle('d-none')
     })
   }
@@ -53,26 +52,8 @@ document.addEventListener('turbolinks:load', () => {
     shareBtn.addEventListener("click", copy);
   }
 
-  const cursorForm = document.getElementById('cursor_place')
-  let cursorValue = document.getElementById('cursor_place_id')
-  const numbers = document.querySelectorAll('.numeric')
-  numbers.forEach((number) => {
-    number.addEventListener('focus', (event) => {
-      event.currentTarget.style.backgroundColor = 'pink'
-      cursorValue.value = event.currentTarget.id
-      Rails.fire(cursorForm,'submit')
-    });
-    number.addEventListener('blur', (event) => {
-      event.currentTarget.style.backgroundColor = ''
-      cursorValue.value = ''
-      Rails.fire(cursorForm,'submit')
-    });
-  });
-  // const submissions = document.querySelectorAll('.submission');
-  // const lastMessage = submissions[submissions.length - 1];
-  // if (lastMessage !== undefined) {
-  //   lastMessage.scrollIntoView();
-  // }
+  initSortable();
+  highlightCells();
 });
 
 import "controllers"

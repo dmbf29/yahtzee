@@ -1,6 +1,7 @@
 import consumer from "./consumer";
 import { initSortable } from '../plugins/init_sortable';
 import { indicateTurn } from '../plugins/indicate_turn';
+import { highlightCells } from '../plugins/highlight_cells';
 
 const gameContainer = document.getElementById('game');
 if (gameContainer) {
@@ -8,9 +9,32 @@ if (gameContainer) {
   consumer.subscriptions.create({ channel: "GameChannel", id: id }, {
     received(data) {
       console.log(data)
+      if (data.cursor_moved) {
+        if (data.cursor_place) {
+          console.log(data.cursor_place)
+          const preSelectedPlace = document.querySelector(`.participation-${data.participation_place}`)
+          if (preSelectedPlace) {
+            preSelectedPlace.classList.remove(`participation-${data.participation_place}`)
+          }
+          const cursorValue = document.getElementById(data.cursor_place);
+          // cursorValue.style.backgroundColor = 'yellow'
+          // cursorValue.classList.add(`user-${data.user_id}-selected`)
+          console.log(cursorValue.parentElement.parentElement)
+          cursorValue.parentElement.parentElement.classList.add(`participation-${data.participation_place}`)
+        } else {
+          const selectedPlace = document.querySelector(`.participation-${data.participation_place}`)
+          // selectedPlace.classList.remove(`user-${data.user_id}-selected`)
+          // selectedPlace.style.backgroundColor = ''
+          selectedPlace.classList.remove(`participation-${data.participation_place}`)
+          // find user's selected place and remove it
+        }
+      }
       if (data.table) {
         const gameTable = document.getElementById('game-table');
         gameTable.innerHTML = data.table; // called when data is broadcast in the cable
+        highlightCells();
+        initSortable();
+        indicateTurn();
       }
       if (data.message) {
         console.log(gameContainer)
@@ -42,23 +66,7 @@ if (gameContainer) {
         const participantsContainer = document.getElementById('participations-container');
         participantsContainer.innerHTML = data.new_player
       }
-      if (data.cursor_moved) {
-        if (data.cursor_place) {
-          console.log(data.cursor_place)
-          const cursorValue = document.getElementById(data.cursor_place);
-          // cursorValue.style.backgroundColor = 'yellow'
-          // cursorValue.classList.add(`user-${data.user_id}-selected`)
-          cursorValue.parentElement.parentElement.classList.add(`participation-${data.participation_place}`)
-        } else {
-          const selectedPlace = document.querySelector(`.participation-${data.participation_place}`)
-          // selectedPlace.classList.remove(`user-${data.user_id}-selected`)
-          // selectedPlace.style.backgroundColor = ''
-          selectedPlace.classList.remove(`participation-${data.participation_place}`)
-          // find user's selected place and remove it
-        }
-      }
-      initSortable();
-      indicateTurn();
+
       // const submissions = document.querySelectorAll('.submission');
       // const lastMessage = submissions[submissions.length - 1];
       // if (lastMessage !== undefined) {

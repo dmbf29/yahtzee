@@ -41,4 +41,8 @@ class Participation < ApplicationRecord
   def destroy_submissions
     game.submissions.where(user: user).destroy_all
   end
+
+  def lastest_submission
+    nonbonus_submissions.order(updated_at: :desc).first
+  end
 end
