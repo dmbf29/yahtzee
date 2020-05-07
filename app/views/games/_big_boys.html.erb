@@ -11,16 +11,16 @@
         <tr>
           <td class="d-flex">
             <%= user.name %>
-            <%= simple_form_for user, remote: true, method: :patch, url: big_boys_user_path(user), remote: true, html: { style: 'display: flex;justify-content: center' } do |f| %>
-              <%= f.input :big_boys, as: :hidden, input_html: { value: user.big_boys + 1 } %>
-              <%= hidden_field_tag :game_id, @game.id %>
+            <%= simple_form_for user, remote: true, method: :patch, url: big_boys_user_path(user), remote: true, html: { style: 'display: flex;justify-content: center', id: "edit_user_pos_#{user.id}" } do |f| %>
+              <%= f.input :big_boys, as: :hidden, input_html: { value: user.big_boys + 1, id: "user_big_boys_#{user.id}" } %>
+              <%= hidden_field_tag :game_id, @game.id, id: "game_id_#{user.id}" %>
               <%= button_tag type: 'submit', data: { confirm: "+1 to #{user.name}'s' big boys?" }, class: 'gray', style: 'border: none;background-color: transparent;display: flex;align-items:center;vertical-align:center' do %>
                 <small class="lighter-gray"><i class="far fa-plus-square"></i></small>
               <% end %>
             <% end %>
-            <%= simple_form_for user, remote: true, method: :patch, url: big_boys_user_path(user), remote: true, html: { style: 'display: flex;justify-content: center' } do |f| %>
-              <%= f.input :big_boys, as: :hidden, input_html: { value: user.big_boys - 1 } %>
-              <%= hidden_field_tag :game_id, @game.id %>
+            <%= simple_form_for user, remote: true, method: :patch, url: big_boys_user_path(user), remote: true, html: { style: 'display: flex;justify-content: center', id: "edit_user_neg_#{user.id}" } do |f| %>
+              <%= f.input :big_boys, as: :hidden, input_html: { value: user.big_boys - 1, id: "user_big_boys_neg_#{user.id}" } %>
+              <%= hidden_field_tag :game_id, @game.id, id: "game_id_neg_#{user.id}" %>
               <%= button_tag type: 'submit', data: { confirm: "-1 to #{user.name}'s' big boys?" }, class: 'gray', style: 'border: none;background-color: transparent;display: flex;align-items:center;padding-left:0;vertical-align:center' do %>
                 <small class="lighter-gray"><i class="far fa-minus-square"></i></small>
               <% end %>
