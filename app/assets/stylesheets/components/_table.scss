@@ -89,9 +89,23 @@ table {
      min-width: 110px;
    }
   }
-}
-
-@media only screen and (max-width : 768px) {
+  .side-table {
+    th {
+      font-size: 0.8em;
+    }
+    td {
+      font-size: 0.8em;
+    }
+    td:first-child {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .author {
+    span {
+      font-size: 0.8em;
+    }
+  }
 }
 
 @media only screen and (max-width : 480px) {

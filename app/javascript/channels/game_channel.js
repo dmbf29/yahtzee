@@ -16,7 +16,6 @@ if (gameContainer) {
             preSelectedPlace.classList.remove(`participation-${data.participation_place}`)
           }
           const cursorValue = document.getElementById(data.cursor_place);
-          console.log(cursorValue.parentElement.parentElement)
           cursorValue.parentElement.parentElement.classList.add(`participation-${data.participation_place}`)
         } else {
           const selectedPlace = document.querySelector(`.participation-${data.participation_place}`)
@@ -31,7 +30,6 @@ if (gameContainer) {
         indicateTurn();
       }
       if (data.message) {
-        console.log(gameContainer)
         const submissionsContainer = document.getElementById('rolls');
         submissionsContainer.insertAdjacentHTML('afterbegin', data.message);
       }
