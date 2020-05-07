@@ -40,6 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'acts_as_paranoid'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'pundit'

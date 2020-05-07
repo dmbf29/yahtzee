@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_041353) do
+ActiveRecord::Schema.define(version: 2020_05_07_023101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,9 @@ ActiveRecord::Schema.define(version: 2020_05_05_041353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "submitter_id"
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_submissions_on_category_id"
+    t.index ["deleted_at"], name: "index_submissions_on_deleted_at"
     t.index ["game_id"], name: "index_submissions_on_game_id"
     t.index ["submitter_id"], name: "index_submissions_on_submitter_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
