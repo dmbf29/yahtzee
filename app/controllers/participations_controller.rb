@@ -31,7 +31,8 @@ class ParticipationsController < ApplicationController
     end
     GameChannel.broadcast_to(
         @game,
-        table: render_to_string(partial: "games/table")
+        table: render_to_string(partial: "games/table"),
+        new_player: render_to_string(partial: "participations/list")
       )
     render status: 200, json: @game.to_json
   end

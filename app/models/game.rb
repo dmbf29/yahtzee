@@ -30,6 +30,8 @@ class Game < ApplicationRecord
 
   def finish!
     participations.each do |participation|
+      next unless participation.submissions.count == 15
+
       score = participation.user.submissions.where(game: self).pluck(:value).sum
       participation.final_score = score
       participation.save
