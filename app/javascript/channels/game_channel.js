@@ -62,7 +62,10 @@ if (gameContainer) {
         participantsContainer.innerHTML = data.remove_list
       }
       if (data.modal_close) {
-        document.querySelector('.modal-backdrop').remove();
+        const backDrop = document.querySelector('.modal-backdrop');
+        if (backDrop) { backDrop.remove(); }
+        const userModal = document.getElementById(data.modal_name);
+        if (userModal) { userModal.innerHTML = data.modal_close }
       }
 
       // const submissions = document.querySelectorAll('.submission');

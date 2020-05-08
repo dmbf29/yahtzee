@@ -24,5 +24,7 @@
   </tbody>
 </table>
 <% @participations.each do |participation| %>
-  <%= render 'users/show_modal', participation: participation %>
+  <div id="user-modal-<%= current_user.id %>-<%= participation.user.id %>">
+    <%= render 'users/show_modal', participation: participation %>
+  </div>
 <% end %>

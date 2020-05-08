@@ -8,8 +8,8 @@ class UsersController < ApplicationController
       @participations = @game.participations.order(place: :asc)
       GameChannel.broadcast_to(
         @game,
-        new_player: render_to_string(partial: "participations/list"),
-        modal_close: true
+        modal_close: render_to_string(partial: "users/show_modal", locals: { participation: @game.user_participation(@user) }),
+        modal_name: "user-modal-#{@user.id}-#{@user.id}"
       )
       head :ok
     else
