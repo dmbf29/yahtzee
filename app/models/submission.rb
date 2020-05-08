@@ -3,14 +3,24 @@ class Submission < ApplicationRecord
   belongs_to :category
   belongs_to :user
   belongs_to :submitter, class_name: "User", foreign_key: "submitter_id"
+  validates_as_paranoid
   validates :value, numericality: true
-  validates_uniqueness_of :category_id, scope: [:user_id, :game_id]
+  validates_uniqueness_of_without_deleted :category_id, scope: [:user_id, :game_id]
+  validate :fixed_value, if: :category_fixed?
   after_save :check_top_bonus, if: :top_six?
   after_save :check_game_end
   acts_as_paranoid
 
   def top_six?
     category.place <= 6
+  end
+
+  def category_fixed?
+    category.fixed_value
+  end
+
+  def fixed_value
+    errors.add(:value, "This has a fixed value") unless value == category.value || value == 0
   end
 
   def check_top_bonus
