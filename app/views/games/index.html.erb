@@ -6,15 +6,23 @@
         <!-- <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> -->
         <div class="notification-content">
           <p><small><%= game.created_at.strftime('%A, %b %d') %></small></p>
-          <p><strong><%#= game.name.empty? ? "Yahtzee" : game.name %></strong> <%= game.users.pluck(:name).join(', ') %></p>
+          <% game.participations.each do |participation| %>
+            <% if participation.final_score %>
+              <p><%= participation.user.name %> - <%= participation.final_score %></p>
+            <% else %>
+              <p><%= participation.user.name %></p>
+            <% end %>
+          <% end %>
         </div>
 
         <div class="notification-actions">
           <%= link_to game_path(game) do %>
             View <i class="fas fa-eye"></i>
           <% end %>
-          <%= link_to participation_path(game.participations.find_by(user: current_user)), method: :delete, data: { confirm: "Leave game and lose progress?" } do %>
-            Leave <i class="far fa-trash-alt"></i>
+          <% if game.users.include?(current_user) %>
+            <%= link_to participation_path(game.participations.find_by(user: current_user)), method: :delete, data: { confirm: "Leave game and lose progress?" } do %>
+              Leave <i class="far fa-trash-alt"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
