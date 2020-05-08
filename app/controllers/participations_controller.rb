@@ -5,9 +5,13 @@ class ParticipationsController < ApplicationController
 
   def create
     @participation = Participation.new
-    @participation.user = current_user
-    @participation.game = @game
     authorize @participation
+    if params[:participation]
+      @participation.user = User.find(params[:participation][:user_id])
+    else
+      @participation.user = current_user
+    end
+    @participation.game = @game
     if @participation.save
       set_table_values
       GameChannel.broadcast_to(
@@ -19,6 +23,7 @@ class ParticipationsController < ApplicationController
       )
       redirect_to game_path(@game)
     else
+      set_table_values
       render 'games/show'
     end
   end
