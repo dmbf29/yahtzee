@@ -3,17 +3,24 @@
     <tr>
       <th class="participation-border-header" scope="col">Players</th>
       <th class="text-center hidden-sm">Wins</th>
+      <th class="text-center">Win %</th>
       <th class="text-center">Avg</th>
     </tr>
   </thead>
   <tbody>
     <% if @participations.any? %>
       <% @participations.each do |participation| %>
+        <% wins = Game.where(winner: participation.user).count %>
+        <% games = participation.user.participations.where.not(final_score: nil).count %>
         <tr class="">
           <td class="cursor-hover participation-border-<%= participation.place %>" data-toggle="modal" data-target="#userModal-<%= participation.user.id %>"><%= participation.user.name %></td>
-          <td class="text-center hidden-sm"><%= Game.where(winner: participation.user).count %></td>
+          <td class="text-center hidden-sm"><%= wins %>/<%= games %></td>
+          <% if games.zero? %>
+            <td class="text-center">0%</td>
+          <% else %>
+            <td class="text-center"><%= (wins / games.to_f).round(1) * 100  %>%</td>
+          <% end %>
           <td class="text-center"><%= participation.user.average_score %></td>
-        </tr>
       <% end %>
     <% else %>
       <tr>
