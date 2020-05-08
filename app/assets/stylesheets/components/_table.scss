@@ -46,6 +46,11 @@ table {
   cursor: grab;
 }
 
+#table-headers th:first-child {
+  cursor: pointer;
+}
+
+
 #table-headers th:active {
   cursor: grabbing;
 }

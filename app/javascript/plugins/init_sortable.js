@@ -4,6 +4,7 @@ import { fetchWithToken } from "../utils/fetch_with_token";
 const initSortable = () => {
   const list = document.querySelector('#table-headers');
   Sortable.create(list, {
+    filter: "#first-header",
     ghostClass: "ghost",
     animation: 150,
     onEnd: (event) => {
@@ -13,12 +14,8 @@ const initSortable = () => {
       let index = 0
       const idCollection = []
       headerElements.forEach((th) => {
-        if (index !== 0) {
-          idCollection.push(th.dataset.participationId);
-        }
-        index ++;
+        idCollection.push(th.dataset.participationId);
       })
-      console.log()
       // send patch to participation to update order with newIndex
       fetchWithToken(`/participations/order`, {
           method: "PATCH",

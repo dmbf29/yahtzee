@@ -2,7 +2,7 @@
   <caption><small>Drag names to change order</small></caption>
   <thead class="thead-dark">
     <tr id='table-headers' data-game-id='<%= @game.id %>'>
-      <th scope="col"></th>
+      <th scope="col" id='first-header'></th>
       <% @participations.each do |participation| %>
         <th scope="col" data-participation-id="<%= participation.id %>"><small><%= participation.user.name %></small></th>
       <% end %>
