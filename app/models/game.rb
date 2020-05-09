@@ -5,9 +5,14 @@ class Game < ApplicationRecord
   belongs_to :winner, class_name: "User", optional: true
   before_validation :add_hex_code
   validates_uniqueness_of :code
+  before_destroy :destroy_submissions
 
   def to_param
     code
+  end
+
+  def destroy_submissions
+    submissions.with_deleted.each(&:destroy_fully!)
   end
 
   def add_hex_code

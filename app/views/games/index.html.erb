@@ -24,6 +24,11 @@
               Leave <i class="far fa-trash-alt"></i>
             <% end %>
           <% end %>
+          <% if current_user.admin %>
+            <%= link_to game_path(game), method: :delete, data: { confirm: "Delete game and lose all progress?" } do %>
+              Delete <i class="far fa-trash-alt"></i>
+            <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>

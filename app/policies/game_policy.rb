@@ -24,4 +24,8 @@ class GamePolicy < ApplicationPolicy
   def cursor_place?
     true
   end
+
+  def destroy?
+    user.admin
+  end
 end

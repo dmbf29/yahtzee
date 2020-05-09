@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :search, :finish]
+  before_action :set_game, only: [:show, :search, :finish, :destroy]
   skip_after_action :verify_authorized, only: [:search]
   before_action :set_table_values, only: [:show]
 
@@ -50,6 +50,12 @@ class GamesController < ApplicationController
     @game.finish!
     authorize @game
     redirect_to game_path(@game)
+  end
+
+  def destroy
+    @game.destroy
+    authorize @game
+    redirect_to games_path
   end
 
   private
