@@ -8,7 +8,7 @@
           <p><small><%= game.created_at.strftime('%A, %b %d') %></small></p>
           <% game.participations.each do |participation| %>
             <% if participation.final_score %>
-              <p><%= participation.user.name %> - <%= participation.final_score %></p>
+              <p><%= participation.user.name %> - <%= participation.final_score %> <% if game.winner == participation.user %><i class="fas fa-star yellow"></i><% end %></p>
             <% else %>
               <p><%= participation.user.name %></p>
             <% end %>
