@@ -79,7 +79,7 @@ if Category.count == 0
       total_cell: false
     },
     {
-      name: 'Total',
+      name: 'Total (Need 63)',
       value: nil,
       top_half: true,
       place: 7,

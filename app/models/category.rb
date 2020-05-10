@@ -3,7 +3,7 @@ class Category < ApplicationRecord
 
   def get_total(game, user)
     case name
-    when "Total"
+    when "Total (Need 63)"
       user.submissions.joins(:category).where('categories.place < ? AND game_id = ?', 7, game.id).pluck(:value).sum
     when "Total Top Half"
       user.submissions.joins(:category).where('categories.place < ? AND game_id = ?', 9, game.id).pluck(:value).sum
