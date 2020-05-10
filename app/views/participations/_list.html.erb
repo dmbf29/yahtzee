@@ -4,7 +4,6 @@
       <th class="participation-border-header" scope="col">Players</th>
       <th class="text-center hidden-sm">Wins</th>
       <th class="text-center">Win%</th>
-      <th class="text-center">Avg</th>
     </tr>
   </thead>
   <tbody>
@@ -20,7 +19,6 @@
           <% else %>
             <td class="text-center"><%= (wins / games.to_f).round(1) * 100  %>%</td>
           <% end %>
-          <td class="text-center"><%= participation.user.average_score %></td>
       <% end %>
     <% else %>
       <tr>

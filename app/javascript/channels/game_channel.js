@@ -43,8 +43,12 @@ if (gameContainer) {
       }
       if (data.finished) {
         // show the play again button
+        const shareContainer = document.getElementById('share-group');
+        shareContainer.remove();
         const playAgainBtn = document.getElementById('play-again-btn');
-        playAgainBtn.classList.remove('d-none')
+        playAgainBtn.classList.remove('d-none');
+        playAgainBtn.parentElement.classList.add('d-flex');
+        playAgainBtn.parentElement.classList.add('my-2');
         // update the leaderboard
         const leaderboardContainer = document.getElementById('leaderboard-container');
         leaderboardContainer.innerHTML = data.finished

@@ -20,12 +20,13 @@
     <iframe src="https://www.elversonpuzzle.com/yahtzee-dice-roller.html#element164" frameborder="0" width="100%" class="mb-3 d-none" height="350px"></iframe>
     <div class="col-12 col-sm-8 col-md-8 col-lg-6" id="left-column">
       <%= render 'games/table' %>
-      <div class="d-flex justify-content-center mb-5">
-        <%= render 'games/action_btns' %>
+      <div class="d-flex justify-content-center">
+      </div>
+      <div class="mb-5">
+        <%= render 'submissions/list' %>
       </div>
     </div>
     <div class="col-12 col-sm-4 col-md-4" id="right-column">
-      <%= render 'submissions/list' %>
       <div id="participations-container" class="mt-2">
         <%= render 'participations/list' %>
       </div>

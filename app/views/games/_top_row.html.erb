@@ -1,6 +1,9 @@
 <div style="display:flex;align-items:center;flex:50%;flex-grow:0;padding-right: 15px;">
-  <% if @participation.id %>
-    <div class="d-flex w-100">
+  <% if @participation.id && @game.winner %>
+    <%= render 'games/action_btns' %>
+  <% elsif @participation.id  %>
+    <%= render 'games/action_btns' %>
+    <div class="d-flex w-100" id='share-group'>
       <button style='font-size: 13px;' class="btn btn-secondary my-2 d-flex align-items-center" id="share-btn" data-container="body" data-toggle="popover" data-placement="top" data-content="Copied to clipboard.">
         Share&nbsp;<i class="fas fa-share-alt"></i>
       </button>
@@ -8,7 +11,6 @@
         <input id="share-link" type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'>
       </p>
     </div>
-  <%# elsif @game.full?  %>
   <% else %>
     <div class="my-2">
       <%= link_to game_participations_path(@game, @participation), method: :post, remote: true, class: 'btn btn-primary', style: "font-size: 13px;" do %>

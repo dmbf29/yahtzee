@@ -2,7 +2,8 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Leaderboard</th>
-      <th></th>
+      <th>Avg</th>
+      <th>High</th>
     </tr>
   </thead>
   <tbody>
@@ -10,6 +11,7 @@
       <% @leaderboard.each do |leader| %>
         <tr>
           <td><%= leader.user.name %></td>
+           <td class="text-center"><%= leader.user.average_score %></td>
           <td style="text-align: center;"><%= leader.final_score %></td>
         </tr>
       <% end %>
