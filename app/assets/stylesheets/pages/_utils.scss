@@ -5,6 +5,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+#left-column{
+  overflow: scroll;
+}
+
 .content {
   flex: 1 0 auto;
 }
