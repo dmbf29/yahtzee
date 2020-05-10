@@ -17,8 +17,11 @@
     </div>
   <% end %>
 </div>
-<% if @participation.id %>
-  <p id="dice-btn" class="btn btn-primary m-0" style='font-size: 13px;'>
-    Dice <i class="fas fa-chevron-down"></i>
-  </p>
-<% end %>
+<div>
+  <button id="wide-view-btn"v class="btn btn-light m-0" style='font-size: 13px;'>Wide View</button>
+  <% if @participation.id %>
+    <p id="dice-btn" class="btn btn-primary m-0" style='font-size: 13px;'>
+      Dice <i class="fas fa-chevron-down"></i>
+    </p>
+  <% end %>
+</div>
