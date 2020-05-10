@@ -17,6 +17,7 @@
 import { indicateTurn } from '../plugins/indicate_turn';
 import { initSortable } from '../plugins/init_sortable';
 import { highlightCells } from '../plugins/highlight_cells';
+import { initWideView } from '../plugins/wide_view';
 import Rails from '@rails/ujs'
 
 // ----------------------------------------------------
@@ -52,6 +53,7 @@ document.addEventListener('turbolinks:load', () => {
     shareBtn.addEventListener("click", copy);
   }
 
+  initWideView();
   initSortable();
   highlightCells();
   indicateTurn();
