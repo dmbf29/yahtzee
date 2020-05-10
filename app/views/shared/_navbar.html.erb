@@ -11,7 +11,14 @@
     <div class="nav-item dropdown navbar-toggler" style="border: none;">
       <%= image_tag "dice.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <%= link_to "New Game", root_path, class: "dropdown-item" %>
+        <%= simple_form_for Game.new do |f| %>
+          <%= f.input :name, as: :hidden %>
+          <%#= f.submit "Start a Game", class: 'btn btn-primary' %>
+          <%= button_tag type: 'submit', style: 'border:none;background-color:transparent', class: "dropdown-item" do %>
+            New Game
+          <% end %>
+        <% end %>
+        <%#= link_to "New Game", root_path, class: "dropdown-item" %>
         <%= link_to "All Games", games_path, class: "dropdown-item" %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
@@ -47,7 +54,14 @@
         <li class="nav-item dropdown">
           <%= image_tag "dice.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "New Game", root_path, class: "dropdown-item" %>
+            <%= simple_form_for Game.new do |f| %>
+              <%= f.input :name, as: :hidden %>
+              <%#= f.submit "Start a Game", class: 'btn btn-primary' %>
+              <%= button_tag type: 'submit', style: 'border:none;background-color:transparent', class: "dropdown-item" do %>
+                New Game
+              <% end %>
+            <% end %>
+            <%#= link_to "New Game", root_path, class: "dropdown-item" %>
             <%= link_to "All Games", games_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
