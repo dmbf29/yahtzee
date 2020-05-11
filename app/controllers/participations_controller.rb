@@ -19,7 +19,8 @@ class ParticipationsController < ApplicationController
         table: render_to_string(partial: "games/table"),
         new_player: render_to_string(partial: "participations/list"),
         big_boys: render_to_string(partial: "games/big_boys"),
-        remove_list: render_to_string(partial: "participations/remove_modal")
+        remove_list: render_to_string(partial: "participations/remove_modal"),
+        finished: set_leaderboard
       )
       redirect_to game_path(@game)
     else
@@ -71,5 +72,17 @@ class ParticipationsController < ApplicationController
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
     @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
+  end
+
+  def set_leaderboard
+    @leaderboard = Participation.includes(:user).where.not(final_score: nil).order(final_score: :desc).first(10)
+    @others = Participation.includes(:user)
+                           .where.not(final_score: nil)
+                           .where.not(id: @leaderboard)
+                           .where.not(user_id: @leaderboard.pluck(:user_id))
+                           .order(final_score: :desc).first(10).uniq(&:user_id)
+    @all_participations = Participation.where.not(final_score: nil).order(final_score: :desc)
+    @leaderboard += @others
+    render_to_string(partial: "games/leaderboard")
   end
 end

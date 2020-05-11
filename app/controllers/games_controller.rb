@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :search, :finish, :destroy]
+  before_action :set_leaderboard, only: [:show]
   skip_after_action :verify_authorized, only: [:search]
   before_action :set_table_values, only: [:show]
 
@@ -29,7 +30,6 @@ class GamesController < ApplicationController
     @top_categories = @categories.where(top_half: true)
     @bottom_categories = @categories.where(top_half: false)
     @participation = @game.user_participation(current_user) || Participation.new
-    @leaderboard = Participation.includes(:user).where.not(final_score: nil).order(final_score: :desc).first(10)
     @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
   end
 
@@ -66,6 +66,17 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find_by(code: params[:id])
+  end
+
+  def set_leaderboard
+    @leaderboard = Participation.includes(:user).where.not(final_score: nil).order(final_score: :desc).first(10)
+    @others = Participation.includes(:user)
+                           .where.not(final_score: nil)
+                           .where.not(id: @leaderboard)
+                           .where.not(user_id: @leaderboard.pluck(:user_id))
+                           .order(final_score: :desc).first(10).uniq(&:user_id)
+    @all_participations = Participation.where.not(final_score: nil).order(final_score: :desc)
+    @leaderboard += @others
   end
 
   def set_table_values

@@ -11,4 +11,12 @@ module ApplicationHelper
       user.average_score
     end
   end
+
+  def display_index(index, participation)
+    if index <= 9
+      "#{index + 1}. "
+    else
+      "#{@all_participations.index(participation) + 1}. "
+    end
+  end
 end

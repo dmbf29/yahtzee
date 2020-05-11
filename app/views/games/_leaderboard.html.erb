@@ -10,8 +10,11 @@
     <% if @leaderboard.any? %>
       <% @users_displayed = [] %>
       <% @leaderboard.each_with_index do |leader, index| %>
-        <tr>
-          <td><%= index + 1 %>. <%= leader.user.name %></td>
+        <% if index == 10 %>
+          <tr class="wrapper-subtle-gray"><td></td><td></td><td></td></tr>
+        <% end %>
+        <tr class="<%#= 'participation-border-header' if @game.users.include?(leader.user) %>">
+          <td><%= display_index(index, leader) %><%= leader.user.name %></td>
           <td class="text-center"><%= display_average_score(leader.user) %></td>
           <td style="text-align: center;"><%= leader.final_score %></td>
         </tr>
