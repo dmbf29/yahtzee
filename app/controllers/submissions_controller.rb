@@ -20,6 +20,8 @@ class SubmissionsController < ApplicationController
       )
       head :ok
     else
+      set_leaderboard
+      @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
       flash[:alert] = @submission.errors.full_messages.first
       render 'games/show'
     end
@@ -34,6 +36,7 @@ class SubmissionsController < ApplicationController
         @game,
         table: render_to_string(partial: "games/table"),
         message: render_to_string(partial: "submissions/destroy_message", locals: { submission: @submission }),
+        finished: @game.winner ? set_leaderboard : false,
         cursor_moved: true,
         cursor_place: "submission_value-#{@submission.category.id}-#{@game.user_participation(@submission.user).id}",
         participation_place: @participation.place,
