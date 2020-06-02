@@ -17,19 +17,19 @@
           <% if games.zero? %>
             <td class="text-center">0%</td>
           <% else %>
-            <td class="text-center"><%= (wins / games.to_f).round(1) * 100  %>%</td>
+            <td class="text-center"><%= ((wins / games.to_f) * 100).round(1) %>%</td>
           <% end %>
+        <% end %>
+      <% else %>
+        <tr>
+          <td>No players yet.</td>
+          <td></td>
+        </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td>No players yet.</td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% @participations.each do |participation| %>
-  <div id="user-modal-<%= current_user.id %>-<%= participation.user.id %>">
-    <%= render 'users/show_modal', participation: participation %>
-  </div>
-<% end %>
+    </tbody>
+  </table>
+  <% @participations.each do |participation| %>
+    <div id="user-modal-<%= current_user.id %>-<%= participation.user.id %>">
+      <%= render 'users/show_modal', participation: participation %>
+    </div>
+  <% end %>
