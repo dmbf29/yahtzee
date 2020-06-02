@@ -20,7 +20,7 @@ class Submission < ApplicationRecord
   end
 
   def fixed_value
-    errors.add(:value, "This has a fixed value") unless value == category.value || value == 0
+    errors.add(:value, "This has a fixed value") unless value == category.value || value == 0 || category.place == 17
   end
 
   def check_top_bonus

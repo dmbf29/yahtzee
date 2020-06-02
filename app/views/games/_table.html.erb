@@ -41,7 +41,11 @@
         <% end %>
       </tr>
     <% end %>
-    <tr><td><br/><br/></td></tr>
+    <tr>
+      <td><br/>
+        <br/>
+      </td>
+    </tr>
     <% @bottom_categories.each do |category| %>
       <tr>
         <td class="text-left"><small><%= category.name %></small></td>
@@ -51,7 +55,7 @@
               <input type="number" class="form-control table-form-control font-weight-bold" value="<%= category.get_total(@game, participation.user) %>" readonly>
             <% else %>
               <%= simple_form_for [@game, get_submission(category, participation.user)], remote: true, html: { id: "submission_form-#{category.id}-#{participation.id}", class: "participation-#{participation.place if @submission == participation.lastest_submission}" } do |f| %>
-                <%= f.input :value, label: false, input_html: { class: 'table-form-control shadow-none', id: "submission_value-#{category.id}-#{participation.id}", step: category.value, max: category.value, min: 0 } %>
+                <%= f.input :value, label: false, input_html: { class: 'table-form-control shadow-none', id: "submission_value-#{category.id}-#{participation.id}", step: category.value, max: (category.place == 17 ? nil : category.value), min: 0 } %>
                 <%= f.input :category_id, as: :hidden, input_html: { value: category.id, id: "submission_category-#{category.id}-#{participation.id}" } %>
                 <%= f.input :user_id, as: :hidden, input_html: { value: participation.user.id, id: "submission_user-#{category.id}-#{participation.id}" } %>
               <% end %>

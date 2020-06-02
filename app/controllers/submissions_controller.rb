@@ -56,6 +56,9 @@ class SubmissionsController < ApplicationController
       )
       head :ok
     else
+      set_table_values
+      @big_boys = (User.where.not(big_boys: 0) + @game.users).uniq.sort_by(&:big_boys).reverse
+      set_leaderboard
       render 'games/show'
     end
   end
