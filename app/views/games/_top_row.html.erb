@@ -8,7 +8,7 @@
         Share&nbsp;<i class="fas fa-share-alt"></i>
       </button>
       <p class="my-2 w-100">
-        <input id="share-link" type="text" value="<%= game_url(@game) %>" readonly class='form-control w-100'>
+        <input id="share-link" type="text" value="<%= ENV['DOMAIN'] + url_for(@game) %>" readonly class='form-control w-100'>
       </p>
     </div>
   <% else %>
