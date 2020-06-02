@@ -94,10 +94,10 @@ class SubmissionsController < ApplicationController
   def set_leaderboard
     @leaderboard = Participation.includes(:user).where.not(final_score: nil).order(final_score: :desc).first(10)
     @others = Participation.includes(:user)
-                           .where.not(final_score: nil)
-                           .where.not(id: @leaderboard)
-                           .where.not(user_id: @leaderboard.pluck(:user_id))
-                           .order(final_score: :desc).first(10).uniq(&:user_id)
+    .where.not(final_score: nil)
+    .where.not(id: @leaderboard)
+    .where.not(user_id: @leaderboard.pluck(:user_id))
+    .order(final_score: :desc).uniq(&:user_id)
     @all_participations = Participation.where.not(final_score: nil).order(final_score: :desc)
     @leaderboard += @others
     render_to_string(partial: "games/leaderboard")
