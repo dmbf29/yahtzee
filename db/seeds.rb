@@ -1,3 +1,8 @@
+# Saving the database
+# heroku pg:pull postgresql-asymmetrical-14613 yahtzee_development --app yahtzee-roll
+# Back up command
+# heroku pg:backups:schedule postgresql-asymmetrical-14613 --at '16:00 Asia/Tokyo' --app yahtzee-roll
+
 user = User.find_by_email('douglasmberkley@gmail.com')
 unless user
   puts "Creating admin..."
